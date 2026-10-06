@@ -1,0 +1,945 @@
+/* Staff room: a roster column (Team / Hire tabs, payroll, the list) and the selected person's file,
+   laid straight on the dotted page like the design. Built from GameHud.Staff*.cs. */
+
+/* --- Roster column ------------------------------------------------------------------------ */
+
+.stf-side {
+    width: 350px;
+    flex-shrink: 0;
+    margin-right: 18px;
+}
+
+.stf-tabs {
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 0 0 10px 2px;
+}
+
+.stf-tab {
+    height: 40px;
+    margin-right: 8px;
+    padding: 0 16px 0 16px;
+    font-size: 13px;
+    -unity-text-align: middle-center;
+    background-color: #FBFDFF;
+    border-width: 2px;
+    border-color: #1E3A6D;
+}
+
+.stf-tab--a {
+    border-top-left-radius: 20px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 18px;
+    border-bottom-left-radius: 10px;
+}
+
+.stf-tab--b {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 18px;
+}
+
+.stf-tab:hover { background-color: #EAF3FD; }
+
+.stf-tab.stf-tab--on {
+    color: #FBFDFF;
+    background-color: #1E3A6D;
+}
+
+.stf-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 0 8px 2px;
+}
+
+.stf-head-chip.chip {
+    align-self: center;
+    margin: 0 6px 4px 0;
+}
+
+.stf-payroll {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 6px 4px 0;
+    padding: 4px 10px 4px 8px;
+    background-color: #FFF3C4;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 10px;
+}
+
+.stf-payroll-text {
+    font-size: 13px;
+    margin-left: 6px;
+}
+
+.stf-list { flex-grow: 1; }
+
+.stf-group {
+    flex-direction: row;
+    align-items: center;
+    margin: 2px 12px 6px 4px;
+}
+
+.stf-group-label {
+    font-size: 19px;
+    color: #3F5F93;
+    margin-right: 8px;
+}
+
+.stf-group-line {
+    flex-grow: 1;
+    height: 2px;
+    --dash-color: #BCD5F0;
+}
+
+.stf-card-row {
+    flex-direction: row;
+    align-items: center;
+    height: 82px;
+    margin: 0 10px 12px 2px;
+    padding: 8px 12px 8px 8px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.stf-card-row:hover { --ink-fill: #F2F8FE; }
+
+.stf-card-row--on,
+.stf-card-row--on:hover {
+    --ink-fill: #DCEBFB;
+    --ink-border-width: 3;
+    --ink-shadow: #2F6FD0;
+    --ink-shadow-x: 4;
+    --ink-shadow-y: 5;
+}
+
+.stf-card-row--dim { opacity: 0.6; }
+
+.stf-face {
+    width: 52px;
+    height: 60px;
+    flex-shrink: 0;
+    margin-right: 12px;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: #EAF3FD;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 12px;
+    border-bottom-left-radius: 8px;
+}
+
+.stf-card-row--on .stf-face { background-color: #FBFDFF; }
+
+.stf-face-img {
+    width: 46px;
+    height: 57px;
+    flex-shrink: 0;
+    margin-bottom: -6px;
+}
+
+.stf-card-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.stf-card-top {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.stf-card-name {
+    flex-shrink: 1;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stf-card-pay {
+    flex-shrink: 0;
+    margin-left: 8px;
+    font-size: 19px;
+}
+
+.stf-row-title {
+    margin-bottom: 5px;
+    font-size: 12px;
+    color: #3F5F93;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stf-card-bottom {
+    flex-direction: row;
+    align-items: center;
+}
+
+.stf-mini {
+    flex-direction: row;
+    align-items: center;
+    margin-right: 12px;
+}
+
+.stf-mini-icon { margin-right: 4px; }
+
+.stf-mini-bar.bar {
+    width: 72px;
+    height: 8px;
+    border-width: 1.5px;
+}
+
+.stf-row-note {
+    flex-shrink: 1;
+    margin-left: 8px;
+    font-size: 16px;
+    color: #3F5F93;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stf-stars {
+    flex-direction: row;
+    align-items: center;
+}
+
+.stf-star {
+    width: 18px;
+    height: 18px;
+    margin-right: 1px;
+}
+
+.stf-stars--small > .stf-star {
+    width: 13px;
+    height: 13px;
+}
+
+.stf-star--off { --icon-ink: #7FA6D6; }
+
+/* Sticks out of the card's top-right corner: "!" leaving, "training"/"on leave", "out of reach". */
+.stf-badge {
+    position: absolute;
+    right: -8px;
+    top: -10px;
+    padding: 1px 8px 2px 8px;
+    font-size: 11px;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 5px;
+    background-color: #FBFDFF;
+}
+
+.stf-badge--alert {
+    width: 26px;
+    height: 26px;
+    padding: 0;
+    font-size: 14px;
+    -unity-text-align: middle-center;
+    background-color: #FF8C6E;
+    border-radius: 13px;
+}
+
+.stf-badge--away {
+    rotate: 6deg;
+    background-color: #A8D1F7;
+}
+
+.stf-badge--lock {
+    rotate: -4deg;
+    color: #B23C20;
+    background-color: #FFF4F0;
+    border-color: #C2462A;
+}
+
+.stf-more {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 54px;
+    margin: 2px 10px 10px 2px;
+    --ink-fill: #F7FAFE;
+    --ink-border: #7FA6D6;
+    --ink-border-width: 2.5;
+    --ink-dash: 7;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.stf-more:hover { --ink-fill: #EAF3FD; }
+
+.stf-more-label {
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.stf-more-note {
+    font-size: 19px;
+    color: #3F5F93;
+    margin-left: 10px;
+}
+
+/* --- The file ---------------------------------------------------------------------------- */
+
+.stf-file {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.stf-file-empty.empty-note {
+    flex-grow: 1;
+    margin: 0;
+    padding: 40px;
+    font-size: 26px;
+    -unity-text-align: middle-center;
+}
+
+.stf-file-scroll { flex-grow: 1; }
+
+.stf-file-body { padding: 2px 12px 6px 4px; }
+
+.stf-top {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-bottom: 14px;
+}
+
+.stf-polaroid {
+    width: 132px;
+    flex-shrink: 0;
+    margin: 4px 20px 0 4px;
+    padding: 8px 8px 6px 8px;
+    align-items: center;
+    rotate: -2.5deg;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #A8C6EA;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "2";
+}
+
+.stf-photo {
+    width: 114px;
+    height: 108px;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: #DCEBFB;
+}
+
+.stf-photo-img {
+    width: 92px;
+    height: 115px;
+    flex-shrink: 0;
+    margin-bottom: -10px;
+}
+
+.stf-caption {
+    max-width: 114px;
+    margin-top: 3px;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stf-id {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-top: 2px;
+}
+
+.stf-name {
+    font-size: 38px;
+    white-space: normal;
+}
+
+/* Names with a capital G or a z fall back to Playpen, which runs much wider. */
+.stf-name.font-heavy { font-size: 26px; }
+
+.stf-meta {
+    margin: 2px 0 8px 0;
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.stf-trait {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.stf-sticker {
+    width: 118px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    padding: 2px 4px 3px 4px;
+    align-items: center;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    --ink-radius: "12 8 11 7 / 7 11 8 12";
+}
+
+.stf-sticker--good { --ink-fill: #FFE066; }
+.stf-sticker--bad { --ink-fill: #FFE3DA; }
+.stf-sticker--a { --ink-fill: #DCEBFB; }
+.stf-sticker--b { --ink-fill: #C9E1F9; }
+
+.stf-sticker-text { font-size: 12px; }
+
+.stf-trait-note {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 17px;
+    white-space: normal;
+}
+
+.stf-banner {
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: 4px;
+    padding: 5px 12px 5px 8px;
+    rotate: -0.5deg;
+    --ink-fill: #DCEBFB;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    --ink-radius: "4 7 5 6";
+}
+
+.stf-banner--bad {
+    --ink-fill: #FFE3DA;
+    --ink-border: #C2462A;
+}
+
+.stf-banner-text {
+    flex-shrink: 1;
+    margin-left: 6px;
+    font-size: 12px;
+    white-space: normal;
+}
+
+.stf-banner--bad > .stf-banner-text { color: #B23C20; }
+
+.stf-facts {
+    width: 236px;
+    flex-shrink: 0;
+    margin-left: 16px;
+}
+
+.stf-fact {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 7px;
+    padding: 5px 10px 5px 8px;
+    background-color: #FFFFFF;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 8px;
+}
+
+.stf-fact-icon { margin-right: 6px; }
+
+.stf-fact-text {
+    flex-shrink: 1;
+    margin-right: 6px;
+    font-size: 12px;
+    white-space: normal;
+}
+
+.stf-fire {
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+    margin-top: 2px;
+    padding: 0 12px 0 10px;
+    --ink-fill: #FFF4F0;
+    --ink-border: #C2462A;
+    --ink-border-width: 2.5;
+    --ink-dash: 6;
+    --ink-radius: "12 20 10 18 / 18 10 20 12";
+}
+
+.stf-fire:hover { --ink-fill: #FFE9E2; }
+.stf-fire:active { translate: 0px 1px; }
+
+.stf-fire--armed,
+.stf-fire--armed:hover {
+    --ink-fill: #FFE3DA;
+    --ink-border-width: 3;
+    --ink-dash: 0;
+}
+
+.stf-fire-icon {
+    margin-right: 6px;
+    --icon-ink: #B23C20;
+}
+
+.stf-fire-label {
+    flex-shrink: 0;
+    font-size: 14px;
+    color: #B23C20;
+}
+
+.stf-fire-note {
+    flex-shrink: 1;
+    min-width: 0;
+    margin-left: 8px;
+    font-size: 17px;
+    color: #B23C20;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stf-mid {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.stf-col-a {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    margin-right: 16px;
+}
+
+.stf-col-b {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.stf-card {
+    margin-bottom: 12px;
+    padding: 10px 14px 12px 14px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.stf-card-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 4px;
+}
+
+.stf-card-title {
+    font-size: 23px;
+    flex-shrink: 0;
+}
+
+.stf-card-note {
+    flex-shrink: 1;
+    margin: 0 0 2px 10px;
+    font-size: 18px;
+    color: #3F5F93;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -unity-text-align: lower-right;
+}
+
+.stf-bar-row {
+    flex-direction: row;
+    align-items: center;
+    height: 22px;
+}
+
+.stf-bar-name {
+    width: 132px;
+    flex-shrink: 0;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stf-bar.bar {
+    flex-grow: 1;
+    height: 10px;
+}
+
+.stf-bar-value {
+    width: 34px;
+    flex-shrink: 0;
+    font-size: 18px;
+    -unity-text-align: middle-right;
+}
+
+.stf-effect.chip { margin-top: 8px; }
+
+/* Morale: gauge and battery on the left, what it's made of on the right. */
+.stf-morale { flex-direction: row; }
+
+.stf-dials {
+    width: 124px;
+    flex-shrink: 0;
+    margin-right: 14px;
+    align-items: center;
+}
+
+.stf-gauge-box {
+    width: 120px;
+    height: 70px;
+}
+
+.stf-gauge {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.stf-gauge-value {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 34px;
+    font-size: 27px;
+    -unity-text-align: middle-center;
+}
+
+.stf-dial-label {
+    margin-bottom: 8px;
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.stf-battery {
+    flex-direction: row;
+    width: 80px;
+    height: 34px;
+    margin: 2px 8px 4px 0;
+    padding: 3px;
+    background-color: #FBFDFF;
+    border-width: 2.5px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 6px;
+}
+
+.stf-cell {
+    flex-grow: 1;
+    margin: 0 1px 0 1px;
+    border-radius: 2px;
+}
+
+.stf-cell--on { background-color: #A8D1F7; }
+.stf-cell.stf-cell--low { background-color: #FF8C6E; }
+
+.stf-nub {
+    position: absolute;
+    right: -9px;
+    top: 8px;
+    width: 6px;
+    height: 13px;
+    background-color: #1E3A6D;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.stf-why-box {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+/* Fixed so the file keeps its shape; a long list scrolls inside. */
+.stf-why { height: 128px; }
+
+.stf-factor {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.stf-factor-label {
+    flex-shrink: 1;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stf-factor-value {
+    flex-shrink: 0;
+    margin-left: 8px;
+    font-size: 12px;
+}
+
+.stf-why-line {
+    height: 2px;
+    margin: 3px 8px 3px 0;
+    --dash-color: #1E3A6D;
+    --dash-on: 5;
+    --dash-off: 4;
+}
+
+.stf-why-note {
+    margin: 4px 8px 0 0;
+    font-size: 16px;
+    color: #1F5CB8;
+    white-space: normal;
+}
+
+.stf-note-card {
+    margin-top: 4px;
+    padding: 14px 14px 12px 14px;
+    rotate: 0.8deg;
+    --ink-fill: #D4E8FC;
+    --ink-border-width: 2;
+    --ink-radius: "4 6 5 3";
+}
+
+.stf-note-text {
+    font-size: 19px;
+    white-space: normal;
+}
+
+.stf-note-tape {
+    left: 90px;
+    top: -10px;
+    width: 58px;
+    height: 20px;
+    rotate: -3deg;
+}
+
+/* Pay */
+.stf-pay-row {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.stf-pay-key {
+    width: 64px;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.stf-pay-bar {
+    flex-grow: 1;
+    height: 16px;
+    overflow: hidden;
+    background-color: #FBFDFF;
+    border-width: 2.5px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 6px;
+}
+
+.stf-pay-bar--market { border-color: #7FA6D6; }
+.stf-pay-fill--market { background-color: #C9E1F9; }
+
+.stf-pay-value {
+    width: 78px;
+    flex-shrink: 0;
+    font-size: 21px;
+    -unity-text-align: middle-right;
+}
+
+.stf-quick-row {
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.stf-quick {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: 6px;
+    padding: 4px 8px 5px 8px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.stf-quick:hover { --ink-fill: #EAF3FD; }
+.stf-quick:active { translate: 0px 1px; }
+
+.stf-quick--cut {
+    margin-right: 0;
+    --ink-fill: #FFF4F0;
+}
+
+.stf-quick--cut:hover { --ink-fill: #FFE9E2; }
+
+.stf-quick-name { font-size: 13px; }
+
+.stf-quick-sub {
+    font-size: 11px;
+    color: #3F5F93;
+}
+
+.stf-stepper {
+    flex-direction: row;
+    align-items: center;
+}
+
+.stf-step {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #EAF3FD;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.stf-step:hover { --ink-fill: #D3E6FA; }
+.stf-step:active { translate: 0px 1px; }
+
+.stf-draft {
+    width: 84px;
+    font-size: 22px;
+    -unity-text-align: middle-center;
+}
+
+.stf-set.btn { margin-left: 8px; }
+
+.stf-draft-note {
+    flex-shrink: 1;
+    margin-left: 10px;
+    font-size: 16px;
+    color: #1F5CB8;
+    white-space: normal;
+}
+
+/* Training */
+.stf-courses { flex-direction: row; }
+
+.stf-course {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    margin-right: 8px;
+    padding: 6px 10px 7px 10px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    --ink-radius: "12 8 11 7 / 7 11 8 12";
+}
+
+.stf-course:hover {
+    --ink-fill: #DCEBFB;
+    --ink-shadow: #2F6FD0;
+}
+
+.stf-course:active { translate: 0px 1px; }
+
+.stf-course-name { font-size: 13px; }
+
+.stf-course-cost {
+    font-size: 11px;
+    color: #3F5F93;
+}
+
+.stf-course-effect {
+    font-size: 15px;
+    white-space: normal;
+}
+
+/* Hiring */
+.stf-terms {
+    flex-direction: row;
+    margin: 4px 0 12px 0;
+}
+
+.stf-term {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    margin-right: 8px;
+    padding: 6px 10px 7px 10px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.stf-term:hover { --ink-fill: #EAF3FD; }
+
+.stf-term--on,
+.stf-term--on:hover {
+    --ink-fill: #2F6FD0;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+}
+
+.stf-term-name { font-size: 13px; }
+.stf-term-pay { font-size: 21px; }
+
+.stf-term-note {
+    font-size: 15px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.stf-term--on > Label { color: #FFFFFF; }
+
+.stf-hire-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.stf-hire-why {
+    flex-shrink: 1;
+    margin-left: 14px;
+    font-size: 17px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+/* Last, so they win over the colours above. */
+.stf-off { opacity: 0.45; }
+.stf-good { color: #1F5CB8; }
+.stf-bad { color: #C2462A; }

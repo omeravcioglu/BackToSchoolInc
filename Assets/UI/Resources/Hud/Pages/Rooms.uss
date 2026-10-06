@@ -1,0 +1,194 @@
+/* Rooms page: every room on campus as a card, grouped by kind. */
+
+.rms-col {
+    flex-grow: 1;
+}
+
+.rms-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.rms-head {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 10px;
+}
+
+.rms-badge {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    --ink-fill: #DCEBFB;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.rms-head-words {
+    flex-grow: 1;
+}
+
+.rms-summary { font-size: 28px; }
+
+.rms-upkeep {
+    font-size: 18px;
+    color: #3F5F93;
+}
+
+.rms-head > .pills { margin-right: 12px; }
+
+.rms-scroll {
+    flex-grow: 1;
+}
+
+.rms-group { margin-bottom: 12px; }
+
+.rms-group-head {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.rms-group-title {
+    font-size: 24px;
+    margin-left: 8px;
+}
+
+.rms-group-count {
+    font-size: 19px;
+    color: #4A6A9E;
+    margin-left: 8px;
+}
+
+.rms-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.rms-card {
+    width: 300px;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 10px 8px 8px;
+    margin: 0 12px 12px 0;
+    transition-duration: 0.1s;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.rms-card:hover {
+    --ink-fill: #EAF3FD;
+    translate: 0px -2px;
+}
+
+.rms-card--closed { --ink-fill: #FFF4F0; }
+
+.rms-thumb {
+    width: 92px;
+    height: 76px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.rms-card-body {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.rms-name {
+    font-size: 14px;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rms-level {
+    font-size: 11px;
+    color: #FBFDFF;
+    background-color: #1E3A6D;
+    padding: 0 6px 1px 6px;
+    border-radius: 7px;
+    flex-shrink: 0;
+}
+
+.rms-status {
+    font-size: 16px;
+    color: #3F5F93;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.rms-status--bad { color: #C2462A; }
+
+.rms-meter { margin-top: 2px; }
+
+.rms-bar {
+    flex-grow: 1;
+    height: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.rms-meter-value {
+    width: 22px;
+    font-size: 11px;
+    -unity-text-align: middle-right;
+}
+
+/* A room still being built: the builders' progress instead of wear. */
+.rms-site { margin-top: 4px; }
+
+.rms-site-bar {
+    height: 12px;
+    margin-right: 4px;
+}
+
+.rms-site-fill { background-color: #FFE066; }
+
+.rms-site-left {
+    font-size: 15px;
+    color: #3F5F93;
+    margin-top: 1px;
+}
+
+.rms-usage {
+    font-size: 11px;
+    color: #3F5F93;
+    margin-top: 3px;
+}
+
+.rms-decor {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.rms-chip {
+    width: 56px;
+    height: 56px;
+    margin: 0 8px 8px 0;
+    padding: 4px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 1.5;
+    --ink-radius: "12 8 10 6 / 6 10 8 12";
+}
+
+.rms-chip:hover { --ink-fill: #EAF3FD; }
+.rms-chip--worn { --ink-fill: #FFF4F0; }
+
+.rms-chip-thumb {
+    flex-grow: 1;
+    -unity-background-scale-mode: scale-to-fit;
+}

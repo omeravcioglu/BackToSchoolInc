@@ -1,0 +1,211 @@
+/* The index card of the student or staff member picked on the campus, and their thought bubble. */
+
+.pc-card {
+    position: absolute;
+    left: 92px;
+    bottom: 116px;
+    width: 424px;
+    flex-direction: row;
+    padding: 16px 16px 14px 14px;
+    rotate: -0.6deg;
+    --ink-lines: #DCE9F7;
+    --ink-radius: "10 22 12 18 / 18 10 22 12";
+}
+
+.pc-tape {
+    left: 176px;
+    top: -12px;
+    width: 72px;
+    height: 22px;
+    rotate: 3deg;
+}
+
+.pc-close {
+    position: absolute;
+    right: -14px;
+    top: -16px;
+}
+
+.pc-polaroid {
+    width: 108px;
+    flex-shrink: 0;
+    align-self: flex-start;
+    align-items: center;
+    padding: 6px 6px 4px 6px;
+    rotate: -3deg;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #A8C6EA;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "2";
+}
+
+.pc-photo {
+    width: 92px;
+    height: 92px;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: #DCEBFB;
+}
+
+.pc-portrait {
+    width: 74px;
+    height: 92px;
+}
+
+.pc-caption {
+    width: 96px;
+    font-size: 18px;
+    margin-top: 3px;
+    -unity-text-align: upper-center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pc-caption--bad { color: #C2462A; }
+
+.pc-body {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    margin-left: 14px;
+}
+
+.pc-name {
+    font-size: 27px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pc-doing {
+    font-size: 18px;
+    color: #3F5F93;
+    margin-top: -3px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pc-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.pc-chip {
+    font-size: 12px;
+    padding: 1px 8px 2px 8px;
+    margin: 0 5px 5px 0;
+    background-color: #DCEBFB;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 7px;
+}
+
+.pc-chip--dark {
+    background-color: #1E3A6D;
+    color: #FBFDFF;
+}
+
+.pc-chip-more {
+    padding: 2px 8px 3px 8px;
+    margin: 0 5px 5px 0;
+    --ink-fill: #FBFDFF;
+    --ink-border: #7FA6D6;
+    --ink-border-width: 2;
+    --ink-dash: 4;
+    --ink-radius: "8 12 7 11 / 11 7 12 8";
+}
+
+.pc-chip-more-label { font-size: 12px; }
+
+.pc-meters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.pc-meter {
+    width: 50%;
+    padding-right: 10px;
+    margin-bottom: 6px;
+}
+
+.pc-meter-head {
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.pc-meter-head--bad { color: #C2462A; }
+
+.pc-meter-name,
+.pc-meter-value { font-size: 12px; }
+
+.pc-bar { margin-top: 2px; }
+
+.pc-fill--calm { background-color: #A8D1F7; }
+
+.pc-buttons {
+    flex-direction: row;
+    margin-top: 4px;
+}
+
+.pc-open {
+    flex-grow: 1;
+    justify-content: center;
+    margin-right: 8px;
+}
+
+.pc-follow--on { --ink-fill: #FFE066; }
+.pc-follow--on:hover { --ink-fill: #FFE88A; }
+
+/* Thought bubble over the person's head on the map */
+
+.pc-thought {
+    position: absolute;
+    padding: 6px 14px 8px 14px;
+    rotate: -2deg;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "26 22 24 20 / 22 24 20 26";
+}
+
+.pc-thought-text {
+    font-size: 21px;
+    white-space: nowrap;
+}
+
+.pc-thought-dot {
+    position: absolute;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-radius: "50%";
+}
+
+.pc-thought-dot--big {
+    left: 20px;
+    bottom: -17px;
+    width: 12px;
+    height: 12px;
+    --ink-border-width: 2.5;
+}
+
+.pc-thought-dot--small {
+    left: 9px;
+    bottom: -30px;
+    width: 8px;
+    height: 8px;
+    --ink-border-width: 2;
+}
+
+/* Names with a capital G or a z fall back to Playpen, which runs much wider. */
+.pc-name.font-heavy { font-size: 19px; }

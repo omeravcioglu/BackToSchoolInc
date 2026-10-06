@@ -1,0 +1,5 @@
+/* Panel theme for the in-game HUD. The HUD's own look lives in Hud.uss. */
+.unity-ui-document__root {
+    -unity-font-definition: url("project://database/Assets/UI/Resources/Fonts/PlaypenSans-Bold.ttf");
+    color: #1E3A6D;
+}

@@ -1,0 +1,1061 @@
+/* Clubs & teams: team pennants and the picked team's card, club badges, Club Room slots and founding. */
+
+.clb-col {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.clb-teams { margin-right: 18px; }
+
+.clb-teams--locked {
+    flex-grow: 0;
+    flex-basis: 290px;
+}
+
+.clb-clubs { flex-grow: 1.1; }
+
+.clb-col-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.clb-col-title { font-size: 30px; }
+
+.clb-col-note {
+    font-size: 18px;
+    color: #3F5F93;
+    margin-bottom: 4px;
+}
+
+.clb-scroll { flex-grow: 1; }
+
+.clb-scroll-content { padding: 10px 8px 8px 2px; }
+
+.clb-sub-title {
+    font-size: 24px;
+    margin: 4px 0 8px 2px;
+}
+
+.clb-foot {
+    font-size: 18px;
+    color: #3F5F93;
+    white-space: normal;
+    margin: 4px 4px 6px 4px;
+}
+
+.clb-empty {
+    font-size: 17px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.clb-why {
+    font-size: 11px;
+    color: #C2462A;
+    white-space: normal;
+}
+
+/* Pennants */
+
+.clb-pennants {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    margin-bottom: 2px;
+}
+
+.clb-pennant {
+    width: 84px;
+    align-items: center;
+    margin-right: 6px;
+    padding-top: 4px;
+    transition-duration: 0.12s;
+}
+
+.clb-pennant:hover { translate: 0px -2px; }
+.clb-pennant--on { translate: 0px -4px; }
+
+.clb-pennant-name {
+    font-size: 12px;
+    margin-top: 1px;
+    padding: 0 6px 1px 6px;
+    border-radius: 7px;
+}
+
+.clb-pennant--on > .clb-pennant-name { background-color: #FFE066; }
+
+.clb-pennant-sub {
+    font-size: 16px;
+    color: #3F5F93;
+    margin-top: -3px;
+}
+
+.clb-flag-box { flex-shrink: 0; }
+
+.clb-flag {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.clb-flag-icon { position: absolute; }
+
+.clb-pennant-flag {
+    width: 64px;
+    height: 48px;
+}
+
+.clb-pennant-flag > .clb-flag-icon {
+    left: 12px;
+    top: 12px;
+    width: 18px;
+    height: 18px;
+}
+
+.clb-team-flag {
+    width: 86px;
+    height: 64px;
+    margin-right: 12px;
+}
+
+.clb-team-flag > .clb-flag-icon {
+    left: 15px;
+    top: 15px;
+    width: 26px;
+    height: 26px;
+}
+
+.clb-found-flag {
+    width: 56px;
+    height: 42px;
+    margin-right: 10px;
+}
+
+.clb-found-flag > .clb-flag-icon {
+    left: 10px;
+    top: 10px;
+    width: 16px;
+    height: 16px;
+}
+
+/* The picked team */
+
+.clb-team {
+    padding: 14px 16px 14px 14px;
+    margin-bottom: 8px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.clb-team-top {
+    flex-direction: row;
+    align-items: center;
+}
+
+.clb-team-title {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.clb-team-name { font-size: 30px; }
+
+.clb-record {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.clb-record-won {
+    font-size: 13px;
+    color: #1F5CB8;
+    margin-right: 10px;
+}
+
+.clb-record-lost {
+    font-size: 13px;
+    margin-right: 10px;
+}
+
+.clb-trophy {
+    width: 18px;
+    height: 18px;
+    margin-right: 1px;
+}
+
+.clb-titles {
+    font-size: 17px;
+    color: #3F5F93;
+    margin-left: 4px;
+}
+
+.clb-standing {
+    font-size: 18px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.clb-standing--bad { color: #C2462A; }
+
+.clb-rating {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    margin-left: 10px;
+    align-items: center;
+    justify-content: center;
+    rotate: 4deg;
+    --ink-fill: #FFE066;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.clb-rating-value {
+    font-size: 30px;
+    margin-top: -4px;
+}
+
+.clb-rating-label {
+    font-size: 10px;
+    margin-top: -6px;
+}
+
+.clb-team-body {
+    flex-direction: row;
+    margin-top: 6px;
+}
+
+.clb-team-left {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    margin-right: 18px;
+}
+
+.clb-team-right {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+}
+
+.clb-section {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin: 8px 0 4px 0;
+}
+
+.clb-section-title { font-size: 21px; }
+
+.clb-section-note {
+    font-size: 16px;
+    color: #3F5F93;
+    margin-bottom: 2px;
+}
+
+.clb-note {
+    font-size: 17px;
+    color: #1F5CB8;
+    white-space: normal;
+    margin-top: 2px;
+}
+
+/* Faces: cropped to a circle, the ring drawn on top */
+
+.clb-face {
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    --ink-fill: #DCEBFB;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.clb-face-ring {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.clb-portrait { flex-shrink: 0; }
+
+.clb-face--coach {
+    width: 42px;
+    height: 42px;
+    margin-right: 10px;
+    border-radius: 21px;
+}
+
+.clb-face--coach > .clb-portrait {
+    width: 34px;
+    height: 42px;
+    margin-bottom: -4px;
+}
+
+.clb-face--small {
+    width: 26px;
+    height: 26px;
+    margin-right: 6px;
+    border-radius: 13px;
+}
+
+.clb-face--small > .clb-portrait {
+    width: 22px;
+    height: 27px;
+    margin-bottom: -3px;
+}
+
+.clb-face--member {
+    width: 30px;
+    height: 30px;
+    margin: 0 4px 4px 0;
+    border-radius: 15px;
+}
+
+.clb-face--member > .clb-portrait {
+    width: 25px;
+    height: 31px;
+    margin-bottom: -3px;
+}
+
+.clb-face--member:hover { scale: 1.12 1.12; }
+
+/* Coach */
+
+.clb-coach {
+    flex-direction: row;
+    align-items: center;
+    padding: 3px 4px 3px 2px;
+    border-radius: 10px;
+}
+
+.clb-coach--link:hover { background-color: rgba(220, 235, 251, 0.6); }
+
+.clb-coach-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.clb-coach-name { font-size: 14px; }
+
+.clb-coach-sub {
+    font-size: 11px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.clb-warn {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    margin-right: 8px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #FFE3DA;
+    --ink-border: #C2462A;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.clb-coach-missing {
+    flex-shrink: 1;
+    font-size: 12px;
+    color: #C2462A;
+    white-space: normal;
+}
+
+.clb-chip {
+    flex-direction: row;
+    align-items: center;
+    padding: 3px 10px 3px 4px;
+    margin-top: 4px;
+    --ink-fill: #F5F9FE;
+    --ink-border: #9CC3EC;
+    --ink-border-width: 2;
+    --ink-dash: 5;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.clb-chip:hover {
+    --ink-fill: #EAF3FD;
+    --ink-border: #1E3A6D;
+}
+
+.clb-chip-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.clb-chip-name { font-size: 12px; }
+
+.clb-chip-sub {
+    font-size: 10px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.clb-chip-pick {
+    font-size: 12px;
+    color: #2F6FD0;
+    margin-left: 6px;
+}
+
+/* Rating breakdown */
+
+.clb-factor {
+    flex-direction: row;
+    align-items: center;
+    min-height: 20px;
+    margin-bottom: 1px;
+}
+
+.clb-factor-label {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 11px;
+    white-space: normal;
+}
+
+.clb-factor-bar {
+    width: 70px;
+    height: 10px;
+    flex-shrink: 0;
+    flex-direction: row;
+    margin-left: 6px;
+}
+
+.clb-factor-half {
+    flex-grow: 1;
+    flex-basis: 0;
+    flex-direction: row;
+}
+
+.clb-factor-half--minus {
+    justify-content: flex-end;
+    border-right-width: 1.5px;
+    border-color: #9CC3EC;
+}
+
+.clb-factor-fill {
+    height: 100%;
+    background-color: #5A9BEA;
+    border-width: 1.5px;
+    border-color: #1E3A6D;
+    border-radius: 3px;
+}
+
+.clb-factor-fill--minus { background-color: #FF8C6E; }
+
+.clb-factor-value {
+    width: 38px;
+    flex-shrink: 0;
+    font-size: 11px;
+    -unity-text-align: middle-right;
+}
+
+.clb-factor-value--minus { color: #B23C20; }
+
+/* Roster */
+
+.clb-player {
+    flex-direction: row;
+    align-items: center;
+    height: 32px;
+    padding: 0 2px 0 2px;
+    border-radius: 8px;
+}
+
+.clb-player:hover { background-color: rgba(220, 235, 251, 0.6); }
+
+.clb-player-who {
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.clb-player-name {
+    flex-shrink: 1;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clb-talent {
+    width: 14px;
+    height: 14px;
+    margin-left: 4px;
+}
+
+.clb-hurt {
+    flex-shrink: 0;
+    margin-left: 5px;
+    padding: 0 5px 1px 5px;
+    font-size: 10px;
+    color: #B23C20;
+    background-color: #FFE3DA;
+    border-width: 1.5px;
+    border-color: #C2462A;
+    border-radius: 7px;
+}
+
+.clb-player-score {
+    width: 28px;
+    flex-shrink: 0;
+    font-size: 13px;
+    -unity-text-align: middle-right;
+}
+
+.clb-x {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    margin-left: 6px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 1.5;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.clb-x:hover { --ink-fill: #FFE3DA; }
+
+.clb-x-icon {
+    width: 11px;
+    height: 11px;
+}
+
+/* Buttons */
+
+.clb-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.clb-btn {
+    height: 34px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0 12px 0 10px;
+    margin: 0 8px 6px 0;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "12 20 10 18 / 18 10 20 12";
+}
+
+.clb-btn:hover { --ink-fill: #EAF3FD; }
+.clb-btn:active { translate: 0px 1px; }
+
+.clb-btn-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+}
+
+.clb-btn-label { font-size: 12px; }
+
+.clb-btn--primary {
+    --ink-fill: #2F6FD0;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+}
+
+.clb-btn--primary:hover { --ink-fill: #3B7CDB; }
+.clb-btn--primary > .clb-btn-label { color: #FFFFFF; }
+.clb-btn--primary > .clb-btn-icon { --icon-ink: #FFFFFF; }
+
+.clb-btn--quiet {
+    --ink-border: #7FA6D6;
+    --ink-dash: 6;
+}
+
+.clb-btn--armed {
+    --ink-fill: #FFF4F0;
+    --ink-border: #C2462A;
+    --ink-dash: 6;
+}
+
+.clb-btn--armed:hover { --ink-fill: #FFE3DA; }
+.clb-btn--armed > .clb-btn-label { color: #B23C20; }
+
+.clb-btn--small {
+    height: 28px;
+    padding: 0 8px 0 6px;
+    margin: 0 0 0 6px;
+}
+
+.clb-btn--small > .clb-btn-icon {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+}
+
+.clb-btn--small > .clb-btn-label { font-size: 11px; }
+
+/* Greyed out: still clickable, so the toast can say why not. */
+.clb-btn--off { --ink-fill: #EEF5FD; --ink-border: #9CC3EC; --ink-shadow: #DCE9F7; }
+.clb-btn--off:hover { --ink-fill: #EEF5FD; }
+.clb-btn--off > .clb-btn-label { color: #7FA6D6; }
+.clb-btn--primary.clb-btn--off { --ink-fill: #9CC3EC; --ink-border: #7FA6D6; --ink-shadow: #7FA6D6; }
+.clb-btn--primary.clb-btn--off:hover { --ink-fill: #9CC3EC; }
+.clb-btn--primary.clb-btn--off > .clb-btn-label { color: #FFFFFF; }
+
+.clb-link {
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: 2px;
+}
+
+.clb-link-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+    --icon-ink: #2F6FD0;
+}
+
+.clb-link-label {
+    flex-shrink: 1;
+    font-size: 18px;
+    color: #2F6FD0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clb-link:hover > .clb-link-label { color: #1E3A6D; }
+.clb-link:hover > .clb-link-icon { --icon-ink: #1E3A6D; }
+
+/* Results */
+
+.clb-result {
+    flex-direction: row;
+    align-items: center;
+    min-height: 21px;
+}
+
+.clb-mark {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    margin-right: 6px;
+    font-size: 10px;
+    -unity-text-align: middle-center;
+    border-width: 1.5px;
+    border-radius: 9px;
+}
+
+.clb-mark--won {
+    color: #1F5CB8;
+    background-color: #DCEBFB;
+    border-color: #1E3A6D;
+}
+
+.clb-mark--lost {
+    color: #B23C20;
+    background-color: #FFE3DA;
+    border-color: #C2462A;
+}
+
+.clb-final {
+    width: 15px;
+    height: 15px;
+    margin-right: 4px;
+}
+
+.clb-result-text {
+    flex-shrink: 1;
+    font-size: 11px;
+    white-space: normal;
+}
+
+/* Starting a team */
+
+.clb-found {
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 12px 8px 8px;
+    margin-bottom: 12px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "12 18 10 16 / 16 10 18 12";
+}
+
+.clb-found--off {
+    --ink-fill: #F5F9FE;
+    --ink-shadow: #9CC3EC;
+}
+
+.clb-found-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: 8px;
+}
+
+.clb-found-name { font-size: 22px; }
+
+.clb-found-line {
+    font-size: 11px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.clb-found-line--ok { color: #1F5CB8; }
+
+/* Locked */
+
+.clb-locked {
+    align-items: center;
+    padding: 22px 18px 18px 18px;
+    margin: 8px 6px 8px 2px;
+    rotate: -1deg;
+    --ink-fill: #D4E8FC;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "4 6 5 3";
+}
+
+.clb-locked-tape {
+    left: 40%;
+    top: -11px;
+    width: 74px;
+    height: 22px;
+    rotate: -3deg;
+}
+
+.clb-locked-art {
+    flex-shrink: 0;
+    margin-bottom: 8px;
+}
+
+.clb-locked-flag {
+    width: 86px;
+    height: 64px;
+}
+
+.clb-lock {
+    position: absolute;
+    right: -10px;
+    bottom: -4px;
+    width: 30px;
+    height: 30px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.clb-locked-text {
+    font-size: 14px;
+    white-space: normal;
+    -unity-text-align: upper-center;
+}
+
+.clb-locked-note {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+    -unity-text-align: upper-center;
+    margin-top: 6px;
+}
+
+/* Club Room slots */
+
+.clb-slots-row {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 4px 0 2px 0;
+}
+
+.clb-slots {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 0;
+}
+
+.clb-slot {
+    width: 30px;
+    height: 30px;
+    margin-right: 4px;
+    align-items: center;
+    justify-content: center;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "6 8 5 7";
+}
+
+.clb-slot--used { --ink-fill: #2F6FD0; }
+
+.clb-slot--free {
+    --ink-fill: #FBFDFF;
+    --ink-dash: 4;
+}
+
+.clb-slot-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.clb-slot--used > .clb-slot-icon { --icon-ink: #FFFFFF; }
+
+.clb-slots-words {
+    flex-shrink: 1;
+    margin-left: 6px;
+}
+
+.clb-slots-text { font-size: 12px; }
+
+.clb-slots-note {
+    font-size: 16px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+/* Clubs */
+
+.clb-club-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.clb-club {
+    width: 300px;
+    margin: 0 14px 18px 0;
+    padding: 12px 14px 10px 12px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.clb-club--a { rotate: -0.5deg; }
+
+.clb-club--b {
+    rotate: 0.5deg;
+    --ink-radius: "8 16 10 14 / 14 10 16 8";
+}
+
+.clb-club-head {
+    flex-direction: row;
+    align-items: center;
+}
+
+.clb-badge {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #DCEBFB;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.clb-badge-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.clb-badge--small {
+    width: 42px;
+    height: 42px;
+    margin-right: 0;
+}
+
+.clb-badge--small > .clb-badge-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.clb-club-title {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.clb-club-name {
+    font-size: 23px;
+    white-space: normal;
+}
+
+/* Names with a capital G or a z ("Gaming Club") fall back to Playpen, which runs much bigger. */
+.clb-club-name.font-heavy { font-size: 16px; }
+
+.clb-club-since {
+    font-size: 16px;
+    color: #3F5F93;
+    margin-top: -3px;
+}
+
+.clb-meter {
+    flex-direction: row;
+    align-items: center;
+    height: 18px;
+    margin-top: 3px;
+}
+
+.clb-meter-name {
+    width: 64px;
+    font-size: 11px;
+    color: #3F5F93;
+}
+
+.bar.clb-meter-bar {
+    flex-grow: 1;
+    height: 9px;
+}
+
+.clb-meter-value {
+    width: 40px;
+    font-size: 12px;
+    -unity-text-align: middle-right;
+}
+
+.clb-medals {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.clb-medal {
+    width: 18px;
+    height: 18px;
+    margin-right: 1px;
+}
+
+.clb-medal-text {
+    flex-shrink: 1;
+    font-size: 16px;
+    color: #3F5F93;
+    margin-left: 3px;
+    white-space: normal;
+}
+
+.clb-perks {
+    font-size: 17px;
+    color: #1F5CB8;
+    white-space: normal;
+    margin-top: 2px;
+}
+
+.clb-faces {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.clb-more {
+    height: 26px;
+    padding: 0 6px 0 6px;
+    margin-bottom: 4px;
+    font-size: 11px;
+    -unity-text-align: middle-center;
+    background-color: #EAF3FD;
+    border-width: 1.5px;
+    border-color: #1E3A6D;
+    border-radius: 13px;
+}
+
+.clb-hint {
+    font-size: 11px;
+    color: #3F5F93;
+    min-height: 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.clb-clubs-empty { margin: 4px 6px 12px 4px; }
+
+.clb-start-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.clb-start {
+    width: 190px;
+    margin: 0 12px 14px 0;
+    padding: 10px 12px 12px 12px;
+    align-items: center;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "12 18 10 16 / 16 10 18 12";
+}
+
+.clb-start--off {
+    --ink-fill: #F5F9FE;
+    --ink-border: #9CC3EC;
+    --ink-shadow: #DCE9F7;
+}
+
+.clb-start-name {
+    font-size: 20px;
+    white-space: normal;
+    -unity-text-align: upper-center;
+    margin-top: 4px;
+}
+
+.clb-start-name.font-heavy {
+    font-size: 14px;
+    margin-top: 7px;
+}
+
+.clb-start-keen {
+    font-size: 16px;
+    color: #3F5F93;
+    -unity-text-align: upper-center;
+}
+
+.clb-start > .clb-why { -unity-text-align: upper-center; }
+.clb-start > .clb-link { align-self: center; }
+
+.clb-start-btn {
+    align-self: stretch;
+    margin: 8px 0 0 0;
+}
+
+/* Names with a capital G or a z fall back to Playpen, which runs much wider. */
+.clb-team-name.font-heavy { font-size: 21px; }

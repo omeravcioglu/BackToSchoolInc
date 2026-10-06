@@ -1,0 +1,679 @@
+/* Money page: the coin jar, money in & out, the balance chart, the tuition planner, loans and
+   sponsors. The steppers and slider rail at the end are shared with the school rules and
+   administration pages. */
+
+.mon-scroll { flex-grow: 1; }
+
+/* The padding keeps the cards' ink shadows clear of the scroll view's edge. */
+.mon-columns {
+    flex-grow: 1;
+    flex-direction: row;
+    padding: 0 5px 6px 0;
+}
+
+.mon-left {
+    width: 520px;
+    flex-shrink: 0;
+    margin-right: 18px;
+}
+
+.mon-right {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.mon-card {
+    padding: 12px 18px 14px 18px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.mon-head {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.mon-title { font-size: 26px; }
+.mon-title--icon { margin-left: 8px; }
+
+.mon-head-note {
+    font-size: 20px;
+    color: #3F5F93;
+    margin-left: 12px;
+    flex-shrink: 1;
+}
+
+/* Coin jar */
+
+.mon-jar {
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 20px 12px 14px;
+    margin-bottom: 14px;
+    --ink-radius: "18 10 16 12 / 12 16 10 18";
+}
+
+.mon-jar-art {
+    width: 100px;
+    height: 115px;
+    flex-shrink: 0;
+    margin-right: 18px;
+}
+
+.mon-jar-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.mon-jar-note {
+    font-size: 21px;
+    color: #3F5F93;
+}
+
+.mon-cash {
+    font-size: 54px;
+    margin: -6px 0 -2px 0;
+}
+
+.mon-net { font-size: 15px; }
+
+.mon-lasts {
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: 6px;
+    padding: 4px 11px 5px 9px;
+    --ink-fill: #DCEBFB;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "12 8 11 7 / 7 11 8 12";
+}
+
+.mon-lasts--good { --ink-fill: #FFF3C4; }
+.mon-lasts--bad { --ink-fill: #FFE3DA; }
+
+.mon-lasts-text {
+    font-size: 13px;
+    margin-left: 6px;
+}
+
+.mon-lasts--bad > .mon-lasts-text { color: #C2462A; }
+
+/* Money in & out */
+
+.mon-flow {
+    flex-grow: 1;
+    --ink-radius: "10 16 12 18 / 18 12 16 10";
+}
+
+.mon-note {
+    font-size: 19px;
+    color: #3F5F93;
+    margin-bottom: 6px;
+}
+
+.mon-flow-row {
+    flex-direction: row;
+    align-items: center;
+    height: 38px;
+}
+
+.mon-flow-label {
+    width: 34px;
+    font-size: 13px;
+    flex-shrink: 0;
+}
+
+.mon-flow-area {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: row;
+    height: 30px;
+}
+
+/* The shorter bar gives way when its gap is too narrow for the amount. */
+.mon-bar {
+    height: 30px;
+    flex-direction: row;
+    flex-shrink: 1;
+    overflow: hidden;
+    background-color: #FBFDFF;
+    border-width: 2.5px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 9px;
+}
+
+.mon-seg {
+    height: 100%;
+    border-right-width: 2px;
+    border-color: #1E3A6D;
+}
+
+.mon-seg--last { border-right-width: 0; }
+
+.mon-gap {
+    flex-grow: 1;
+    flex-shrink: 0;
+    min-width: 74px;
+    margin-left: 3px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    --ink-fill: #FFF4F0;
+    --ink-border: #C2462A;
+    --ink-border-width: 2;
+    --ink-dash: 5;
+    --ink-radius: "8";
+}
+
+.mon-gap--spare {
+    --ink-fill: #EAF3FD;
+    --ink-border: #2F6FD0;
+}
+
+.mon-gap-text {
+    font-size: 12px;
+    white-space: nowrap;
+    color: #C2462A;
+}
+
+.mon-gap--spare > .mon-gap-text { color: #1F5CB8; }
+
+.mon-flow-total {
+    width: 92px;
+    font-size: 22px;
+    flex-shrink: 0;
+    -unity-text-align: middle-right;
+}
+
+.mon-rule {
+    height: 2px;
+    margin: 10px 0 10px 0;
+}
+
+.mon-legend {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.mon-key {
+    width: 33.3%;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.mon-swatch {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    flex-shrink: 0;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-radius: 4px;
+}
+
+.mon-key-text { flex-shrink: 1; }
+
+.mon-key-name {
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.mon-key-amount { font-size: 14px; }
+
+.mon-flow-foot {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 2px;
+}
+
+.mon-flow-net { font-size: 15px; }
+
+.mon-waived {
+    font-size: 18px;
+    color: #3F5F93;
+}
+
+/* Balance chart */
+
+.mon-chart-card {
+    flex-grow: 1;
+    min-height: 176px;
+}
+
+.mon-chart-box {
+    flex-grow: 1;
+    flex-direction: row;
+    min-height: 96px;
+    margin-top: 6px;
+}
+
+.mon-chart-axis {
+    width: 54px;
+    justify-content: space-between;
+    padding-right: 6px;
+}
+
+.mon-chart-axis > Label {
+    font-size: 12px;
+    color: #3F5F93;
+    -unity-text-align: middle-right;
+}
+
+.mon-chart {
+    flex-grow: 1;
+    border-left-width: 2px;
+    border-bottom-width: 2px;
+    border-color: #1E3A6D;
+}
+
+.mon-chart-dates {
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 54px;
+    margin-top: 2px;
+}
+
+.mon-chart-dates > Label {
+    font-size: 16px;
+    color: #3F5F93;
+}
+
+/* Tuition */
+
+.mon-tuition {
+    margin-top: 14px;
+    --ink-radius: "8 16 10 14 / 14 10 16 8";
+}
+
+.mon-tag {
+    font-size: 12px;
+    margin-left: 12px;
+    padding: 1px 10px 2px 10px;
+    color: #1F5CB8;
+    background-color: #DCEBFB;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 7px;
+}
+
+.mon-tag--fair {
+    color: #1E3A6D;
+    background-color: #FFF3C4;
+}
+
+.mon-tag--pricey {
+    color: #C2462A;
+    background-color: #FFE3DA;
+}
+
+.mon-price-row {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.mon-price-box {
+    width: 196px;
+    flex-direction: row;
+    align-items: flex-end;
+    margin: 0 10px 0 12px;
+}
+
+.mon-price { font-size: 40px; }
+
+.mon-per {
+    font-size: 13px;
+    color: #3F5F93;
+    margin: 0 0 10px 6px;
+}
+
+.mon-delta {
+    flex-grow: 1;
+    font-size: 15px;
+    color: #3F5F93;
+    -unity-text-align: middle-right;
+}
+
+.mon-scale {
+    height: 16px;
+    margin: 0 8px 0 8px;
+}
+
+.mon-scale > Label {
+    position: absolute;
+    top: 0;
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.mon-scale-low { left: 0; }
+.mon-scale-high { right: 0; }
+
+.mon-scale-fair {
+    color: #1F5CB8;
+    translate: -50% 0px;
+}
+
+.mon-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.mon-chips > .chip { margin: 0 6px 4px 0; }
+
+.mon-chip-arrow {
+    width: 11px;
+    height: 11px;
+    margin: 0 3px 0 3px;
+}
+
+.mon-tuition-foot {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 6px;
+}
+
+.mon-status {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: 12px;
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+/* Loans and sponsors */
+
+.mon-bottom {
+    flex-direction: row;
+    margin-top: 14px;
+}
+
+.mon-loans {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 14px;
+}
+
+.mon-sponsors {
+    flex-grow: 1;
+    flex-basis: 0;
+    --ink-radius: "8 14 10 16 / 16 10 14 8";
+}
+
+.mon-card.mon-dashed {
+    --ink-fill: #F6FAFE;
+    --ink-border: #7FA6D6;
+    --ink-dash: 7;
+    --ink-shadow-x: 0;
+    --ink-shadow-y: 0;
+}
+
+.mon-nothing {
+    flex-direction: row;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.mon-nothing-art {
+    width: 46px;
+    height: 40px;
+    margin-right: 14px;
+    flex-shrink: 0;
+}
+
+.mon-nothing-text { flex-shrink: 1; }
+.mon-nothing-title { font-size: 24px; }
+
+.mon-nothing-note {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.mon-line {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.mon-line-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-right: 10px;
+}
+
+.mon-line-name {
+    font-size: 13px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mon-line-sub {
+    font-size: 11px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.mon-line-amount {
+    font-size: 22px;
+    flex-shrink: 0;
+}
+
+.mon-offer {
+    margin-top: 10px;
+    padding: 8px 12px 8px 12px;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "4 6 5 3";
+}
+
+.mon-offer-head {
+    flex-direction: row;
+    align-items: center;
+}
+
+.mon-offer-who {
+    font-size: 12px;
+    margin-left: 6px;
+    flex-shrink: 1;
+    white-space: normal;
+}
+
+.mon-offer-btn {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 6px;
+    padding: 5px 10px 6px 8px;
+    transition-duration: 0.12s;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    --ink-radius: "10 14 8 12";
+}
+
+.mon-offer-btn:hover {
+    translate: 0px -1px;
+    --ink-fill: #EAF3FD;
+}
+
+.mon-offer-label {
+    font-size: 12px;
+    margin-left: 6px;
+    flex-shrink: 1;
+    white-space: normal;
+}
+
+.mon-link {
+    flex-direction: row;
+    align-items: center;
+    align-self: flex-start;
+    margin-top: 4px;
+}
+
+.mon-link-label {
+    font-size: 18px;
+    color: #2F6FD0;
+    margin-right: 4px;
+}
+
+.mon-link:hover > .mon-link-label { color: #1E3A6D; }
+
+/* Shared: round steppers and the slider rail */
+
+.mon-step {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.08s;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.mon-step:hover { --ink-fill: #EAF3FD; }
+.mon-step:active { translate: 0px 1px; }
+.mon-step--b { --ink-radius: "46% 52% 44% 50% / 50% 44% 52% 46%"; }
+
+.mon-step--small {
+    width: 30px;
+    height: 30px;
+}
+
+.mon-step--small > .icon-17 {
+    width: 13px;
+    height: 13px;
+}
+
+.mon-track {
+    height: 34px;
+    margin: 4px 8px 0 8px;
+}
+
+.mon-track-rail {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 12px;
+    height: 10px;
+    background-color: #EAF3FD;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 5px;
+}
+
+.mon-track-mark {
+    position: absolute;
+    top: 2px;
+    width: 3px;
+    height: 30px;
+    margin-left: -1px;
+    background-color: #1F5CB8;
+    border-radius: 2px;
+}
+
+.mon-track-knob {
+    position: absolute;
+    top: 5px;
+    width: 24px;
+    height: 24px;
+    margin-left: -12px;
+    transition-duration: 0.08s;
+    --ink-fill: #FFE066;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 1;
+    --ink-shadow-y: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.mon-track:hover > .mon-track-knob { scale: 1.12 1.12; }
+
+/* Endowment */
+
+.mon-endowment { margin-top: 14px; }
+
+.mon-endow-body {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 4px;
+}
+
+.mon-endow-art {
+    width: 56px;
+    height: 63px;
+    flex-shrink: 0;
+    margin-right: 14px;
+}
+
+.mon-endow-words {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.mon-fund { font-size: 34px; }
+
+.mon-fund-note {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.mon-gifts {
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+.mon-gift {
+    margin-left: 10px;
+    padding: 5px 14px 6px 14px;
+    transition-duration: 0.12s;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    --ink-radius: "10 14 8 12";
+}
+
+.mon-gift:hover {
+    translate: 0px -1px;
+    --ink-fill: #FFE066;
+}
+
+.mon-gift--off { opacity: 0.5; }
+
+.mon-gift-label { font-size: 14px; }
+
+/* Last, so they win over the colours above. */
+.mon-good { color: #1F5CB8; }
+.mon-bad { color: #C2462A; }

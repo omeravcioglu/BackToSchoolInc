@@ -1,0 +1,969 @@
+/* Students page: the list on the left, the student's file as a notebook spread on the right.
+   Built from GameHud.Students*.cs. Sizes are reference pixels (the page is about 1284 x 584 inside). */
+
+/* --- List ------------------------------------------------------------------------------- */
+
+.stu-side.panel {
+    width: 320px;
+    flex-shrink: 0;
+    margin-right: 16px;
+    padding: 12px 10px 10px 12px;
+}
+
+.stu-side-head {
+    flex-direction: row;
+    align-items: flex-end;
+    flex-shrink: 0;
+    margin: 0 0 6px 4px;
+}
+
+.stu-side-title { font-size: 28px; }
+
+.stu-count {
+    font-size: 21px;
+    color: #3F5F93;
+    margin: 0 0 3px 8px;
+}
+
+.stu-find {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 2px 8px 2px;
+}
+
+.stu-find-icon { margin-right: 6px; }
+
+.stu-search {
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 32px;
+    margin: 0;
+}
+
+.stu-search .unity-base-text-field__input {
+    flex-grow: 1;
+    padding: 0 10px 0 10px;
+    background-color: #FFFFFF;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 8px;
+    font-size: 14px;
+    color: #1E3A6D;
+    -unity-text-align: middle-left;
+    -unity-font-definition: url("project://database/Assets/UI/Resources/Fonts/PlaypenSans-SemiBold.ttf");
+    --unity-cursor-color: #1E3A6D;
+    --unity-selection-color: rgba(168, 209, 247, 0.7);
+}
+
+.stu-search .unity-base-text-field__input--placeholder {
+    font-size: 19px;
+    color: #7FA6D6;
+    -unity-font-definition: url("project://database/Assets/UI/Resources/Fonts/Caveat-Bold.ttf");
+}
+
+.stu-clear {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    margin-left: 6px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.stu-clear:hover { --ink-fill: #DCEBFB; }
+
+.stu-sorts {
+    flex-wrap: wrap;
+    flex-shrink: 0;
+    margin: 0 0 6px 2px;
+}
+
+.stu-sorts > .pill-btn {
+    font-size: 11px;
+    margin: 0 4px 4px 0;
+    padding: 1px 7px 2px 7px;
+}
+
+.stu-swap-note {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 4px 4px 10px 2px;
+    padding: 8px 8px 8px 10px;
+    rotate: -0.6deg;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "4 7 5 6";
+}
+
+.stu-swap-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0 8px 0 8px;
+    font-size: 18px;
+    white-space: normal;
+}
+
+.stu-mini-btn {
+    height: 30px;
+    flex-shrink: 0;
+    padding: 0 10px 0 10px;
+    justify-content: center;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "10 14 8 12 / 12 8 14 10";
+}
+
+.stu-mini-btn:hover { --ink-fill: #EAF3FD; }
+.stu-mini-btn > Label { font-size: 12px; }
+
+.stu-list { flex-grow: 1; }
+
+.stu-row {
+    flex-direction: row;
+    align-items: center;
+    height: 54px;
+    padding: 0 8px 0 4px;
+    border-radius: 10px;
+    border-bottom-width: 1.5px;
+    border-color: #DCE9F7;
+}
+
+.stu-row:hover { background-color: rgba(220, 235, 251, 0.6); }
+.stu-row--on { background-color: #FFF3C4; }
+.stu-row--on:hover { background-color: #FFEDB0; }
+.stu-row--dim { opacity: 0.4; }
+
+/* A face cut out of a little frame, shoulders cropped by the bottom edge. */
+.stu-face {
+    width: 40px;
+    height: 44px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: #DCEBFB;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 9px;
+    border-bottom-right-radius: 11px;
+    border-bottom-left-radius: 8px;
+}
+
+.stu-face--small {
+    width: 36px;
+    height: 40px;
+    margin-right: 8px;
+}
+
+.stu-face-img {
+    width: 36px;
+    height: 45px;
+    flex-shrink: 0;
+    margin-bottom: -5px;
+}
+
+.stu-row-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.stu-row-name {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stu-row-sub {
+    font-size: 12px;
+    color: #3F5F93;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stu-row-flag {
+    width: 18px;
+    height: 18px;
+    margin-left: 4px;
+}
+
+.stu-row-mood.bar {
+    width: 44px;
+    height: 9px;
+    flex-shrink: 0;
+    margin-left: 8px;
+    border-width: 1.5px;
+}
+
+/* --- The spread ------------------------------------------------------------------------- */
+
+.stu-spread {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-direction: row;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 4;
+    --ink-shadow-y: 5;
+    --ink-radius: "18 10 16 12 / 12 16 10 18";
+}
+
+.stu-file-empty.empty-note {
+    flex-grow: 1;
+    margin: 0;
+    padding: 40px;
+    font-size: 26px;
+    -unity-text-align: middle-center;
+}
+
+/* Left-hand page: dotted paper. */
+.stu-left {
+    width: 452px;
+    flex-shrink: 0;
+    padding: 3px 0 3px 3px;
+    --ink-dots: #CFE0F4;
+    --ink-radius: "16 0 0 12";
+}
+
+.stu-left-scroll { flex-grow: 1; }
+
+.stu-left-body { padding: 10px 30px 12px 20px; }
+
+.stu-head {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.stu-polaroid {
+    width: 148px;
+    flex-shrink: 0;
+    margin: 4px 18px 0 2px;
+    padding: 9px 9px 6px 9px;
+    align-items: center;
+    rotate: -3deg;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #A8C6EA;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "2";
+}
+
+.stu-photo {
+    width: 128px;
+    height: 128px;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: #DCEBFB;
+}
+
+.stu-photo-img {
+    width: 100px;
+    height: 125px;
+    flex-shrink: 0;
+    margin-bottom: -8px;
+}
+
+.stu-caption {
+    max-width: 128px;
+    margin-top: 4px;
+    font-size: 19px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stu-id {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-top: 2px;
+}
+
+.stu-kicker {
+    font-size: 19px;
+    color: #3F5F93;
+}
+
+.stu-name {
+    font-size: 40px;
+    white-space: normal;
+    margin: -2px 0 2px 0;
+}
+
+/* Long names would wrap and push the abilities off the page. */
+.stu-name.stu-name--long { font-size: 32px; }
+
+/* Names with a capital G or a z fall back to Playpen, which runs much wider. */
+.stu-name.font-heavy { font-size: 27px; }
+
+.stu-meta {
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+    margin-top: 2px;
+}
+
+/* What the family pays, and where it's from */
+.stu-pay {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 8px;
+}
+
+.stu-aid.chip { margin-right: 6px; }
+
+.stu-traits { margin-top: 10px; }
+
+.stu-trait {
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 7px;
+}
+
+.stu-sticker {
+    width: 100px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    padding: 2px 4px 3px 4px;
+    align-items: center;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    --ink-radius: "12 8 11 7 / 7 11 8 12";
+}
+
+.stu-sticker--good { --ink-fill: #FFF3C4; }
+.stu-sticker--bad { --ink-fill: #FFE3DA; }
+.stu-sticker--a { --ink-fill: #DCEBFB; }
+.stu-sticker--b { --ink-fill: #C9E1F9; }
+
+.stu-sticker-text { font-size: 12px; }
+
+.stu-trait-note {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 18px;
+    white-space: normal;
+}
+
+.stu-lower {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 6px;
+}
+
+.stu-card {
+    flex-shrink: 0;
+    padding: 8px 10px 8px 10px;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.stu-card-title { font-size: 23px; }
+
+/* The radar drawing and its five labels, placed like the design's (scaled to 90%). */
+.stu-radar-box {
+    width: 212px;
+    height: 186px;
+}
+
+.stu-radar {
+    position: absolute;
+    left: 7px;
+    top: 5px;
+    width: 198px;
+    height: 189px;
+}
+
+.stu-axis { position: absolute; }
+
+.stu-axis--0 {
+    left: 56px;
+    top: -2px;
+    width: 100px;
+    align-items: center;
+}
+
+.stu-axis--1 { left: 155px; top: 45px; }
+.stu-axis--4 { left: 0; top: 45px; }
+
+/* The two bottom corners read on one line ("Athletic 41"), so the card stays short. */
+.stu-axis--2 {
+    left: 132px;
+    top: 163px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.stu-axis--3 {
+    left: 12px;
+    top: 163px;
+    flex-direction: row;
+    align-items: center;
+}
+
+.stu-axis-name { font-size: 11px; }
+
+.stu-axis-value {
+    font-size: 18px;
+    margin-top: -3px;
+}
+
+.stu-axis--2 > .stu-axis-value,
+.stu-axis--3 > .stu-axis-value { margin: 0 0 0 4px; }
+
+.stu-acts {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 4px 0 0 14px;
+}
+
+.stu-fact { margin-bottom: 12px; }
+.stu-fact-icon { margin-right: 5px; }
+
+.stu-fact-key {
+    font-size: 17px;
+    color: #3F5F93;
+}
+
+.stu-fact-value {
+    font-size: 13px;
+    white-space: normal;
+    margin-left: 22px;
+}
+
+/* Right-hand page: ruled paper. */
+.stu-right {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 14px 20px 14px 36px;
+}
+
+.stu-ruled {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 8px;
+    bottom: 12px;
+}
+
+.stu-now-head {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-bottom: 8px;
+}
+
+.stu-now-title {
+    font-size: 32px;
+    margin-right: 12px;
+}
+
+.stu-status {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 1;
+    justify-content: flex-end;
+}
+
+.stu-status > .chip { margin: 2px 0 2px 6px; }
+
+.stu-meters {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.stu-meter {
+    width: 48%;
+    margin-bottom: 10px;
+}
+
+.stu-meter-top {
+    flex-direction: row;
+    align-items: flex-end;
+    margin-bottom: 2px;
+}
+
+.stu-meter-name {
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-bottom: 3px;
+}
+
+.stu-meter-note {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin: 0 6px 1px 8px;
+    font-size: 16px;
+    color: #3F5F93;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -unity-text-align: lower-right;
+}
+
+.stu-meter-value {
+    font-size: 25px;
+    flex-shrink: 0;
+}
+
+.stu-meter-bar {
+    height: 15px;
+    overflow: hidden;
+    background-color: #FBFDFF;
+    border-width: 2.5px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 6px;
+}
+
+.stu-fill--calm { background-color: #A8D1F7; }
+.stu-fill--calm.bar-fill--low { background-color: #FF8C6E; }
+
+.stu-meter-target {
+    position: absolute;
+    top: -3px;
+    bottom: -3px;
+    width: 3px;
+    margin-left: -1.5px;
+    background-color: #C2462A;
+}
+
+.stu-meter-target--up { background-color: #1F5CB8; }
+
+.stu-tabs {
+    flex-direction: row;
+    flex-shrink: 0;
+    margin: 2px 0 10px 0;
+}
+
+.stu-tab.pill-btn {
+    margin: 0 6px 0 0;
+    font-size: 12px;
+}
+
+/* The sticky under the meters; its paper changes with the tab. */
+.stu-sheet {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 90px;
+    padding: 12px 6px 8px 14px;
+    rotate: 0.4deg;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "4 7 5 6";
+}
+
+.stu-sheet--family {
+    rotate: 0deg;
+    --ink-fill: #FFFFFF;
+    --ink-radius: "8 16 10 14 / 14 10 16 8";
+}
+
+.stu-sheet--pals {
+    rotate: 0deg;
+    --ink-fill: #FFFFFF;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.stu-sheet--diary {
+    rotate: -0.4deg;
+    --ink-fill: #D4E8FC;
+}
+
+.stu-sheet--move {
+    rotate: 0deg;
+    --ink-fill: #EAF3FD;
+    --ink-radius: "12 18 10 16 / 16 10 18 12";
+}
+
+.stu-sheet-tape {
+    left: 120px;
+    top: -11px;
+    width: 64px;
+    height: 20px;
+    rotate: -3deg;
+}
+
+.stu-sheet-body { flex-grow: 1; }
+
+.stu-sheet-head {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.stu-sheet-title {
+    font-size: 22px;
+    margin-bottom: 4px;
+    white-space: normal;
+}
+
+.stu-sheet-title.font-heavy { font-size: 16px; }
+
+.stu-sheet-note {
+    font-size: 18px;
+    color: #1F5CB8;
+    white-space: normal;
+    margin: 6px 8px 4px 0;
+}
+
+.stu-sheet-kicker {
+    font-size: 17px;
+    color: #3F5F93;
+}
+
+.stu-sheet-meta {
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.stu-sheet-meta-note {
+    font-size: 17px;
+    color: #3F5F93;
+    white-space: normal;
+    margin: 0 8px 8px 0;
+}
+
+.stu-factor {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 21px;
+    margin-right: 8px;
+}
+
+.stu-factor-label {
+    font-size: 13px;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.stu-factor-value {
+    font-size: 13px;
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.stu-total { margin: 4px 8px 0 0; }
+
+.stu-total-line {
+    height: 2px;
+    margin-bottom: 3px;
+    --dash-color: #1E3A6D;
+    --dash-on: 5;
+    --dash-off: 4;
+}
+
+.stu-total > .stu-factor { margin-right: 0; }
+
+.stu-fam-top {
+    flex-direction: row;
+    align-items: center;
+    margin: 0 8px 8px 0;
+    padding-bottom: 6px;
+    border-bottom-width: 1.5px;
+    border-color: #DCE9F7;
+}
+
+.stu-fam-who {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.stu-fam-name {
+    font-size: 15px;
+    white-space: normal;
+}
+
+.stu-odds {
+    width: 130px;
+    flex-shrink: 0;
+    margin-left: 8px;
+    align-items: flex-end;
+}
+
+.stu-odds-value { font-size: 34px; }
+
+.stu-odds-note {
+    margin-top: -6px;
+    font-size: 15px;
+    color: #3F5F93;
+    white-space: normal;
+    -unity-text-align: upper-right;
+}
+
+.stu-pal {
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 8px 4px 2px;
+    border-radius: 8px;
+    border-bottom-width: 1.5px;
+    border-color: #EEF5FD;
+}
+
+.stu-pal:hover { background-color: rgba(220, 235, 251, 0.7); }
+
+.stu-pal-score {
+    font-size: 19px;
+    flex-shrink: 0;
+    margin: 0 8px 0 6px;
+}
+
+.stu-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 6px;
+}
+
+.stu-chips > .chip { margin: 0 6px 5px 0; }
+
+.stu-diary-line {
+    font-size: 19px;
+    white-space: normal;
+    margin: 0 8px 2px 0;
+}
+
+/* Picking a room */
+.stu-x {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    margin-right: 8px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.stu-x:hover { --ink-fill: #DCEBFB; }
+
+.stu-room {
+    flex-direction: row;
+    align-items: center;
+    margin: 0 10px 8px 0;
+    padding: 7px 10px 7px 12px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "12 8 10 9 / 9 10 8 12";
+}
+
+.stu-room:hover { --ink-fill: #FFF3C4; }
+
+.stu-room > .chip {
+    align-self: center;
+    flex-shrink: 0;
+}
+
+.stu-room-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.stu-room-name { font-size: 14px; }
+
+.stu-beds {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.stu-bed {
+    width: 12px;
+    height: 10px;
+    margin-right: 3px;
+    border-width: 1.5px;
+    border-color: #1E3A6D;
+    border-radius: 3px;
+}
+
+.stu-bed--taken { background-color: #5A9BEA; }
+.stu-bed--free { background-color: #FBFDFF; }
+
+.stu-room-level {
+    font-size: 11px;
+    color: #3F5F93;
+    margin-left: 4px;
+}
+
+.stu-room-faces {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 10px 0 12px;
+}
+
+.stu-room-face {
+    width: 22px;
+    height: 28px;
+    margin-left: -4px;
+}
+
+.stu-room-more {
+    font-size: 15px;
+    color: #3F5F93;
+    margin-left: 4px;
+}
+
+/* Actions */
+.stu-actions {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: 12px;
+}
+
+.stu-act {
+    height: 42px;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 8px;
+    padding: 0 14px 0 12px;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-radius: "12 22 10 20 / 20 10 22 12";
+}
+
+.stu-act:hover { --ink-fill: #EAF3FD; }
+.stu-act:active { translate: 0px 1px; }
+.stu-act-icon { margin-right: 6px; }
+.stu-act-label {
+    flex-shrink: 0;
+    font-size: 14px;
+}
+
+.stu-act--blue {
+    --ink-fill: #2F6FD0;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "22 12 20 10 / 10 20 12 22";
+}
+
+.stu-act--blue:hover { --ink-fill: #3B7CDB; }
+.stu-act--blue > .stu-act-label { color: #FFFFFF; }
+.stu-act--blue > .stu-act-icon { --icon-ink: #FFFFFF; }
+
+.stu-act--on {
+    --ink-fill: #DCEBFB;
+    --ink-shadow: #2F6FD0;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+}
+
+.stu-act--blue.stu-act--on { --ink-fill: #1E3A6D; }
+
+.stu-act--danger {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-width: 0;
+    margin-right: 0;
+    --ink-fill: #FFF4F0;
+    --ink-border: #C2462A;
+    --ink-dash: 6;
+}
+
+.stu-act--danger:hover { --ink-fill: #FFE9E2; }
+.stu-act--danger > .stu-act-label { color: #B23C20; }
+.stu-act--danger > .stu-act-icon { --icon-ink: #B23C20; }
+
+.stu-act--armed,
+.stu-act--armed:hover {
+    --ink-fill: #FFE3DA;
+    --ink-border-width: 3;
+    --ink-dash: 0;
+}
+
+.stu-act-note {
+    flex-shrink: 1;
+    min-width: 0;
+    margin-left: 8px;
+    font-size: 17px;
+    color: #B23C20;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* The spiral binding over the fold between the pages. */
+.stu-binding {
+    position: absolute;
+    left: 452px;
+    top: 0;
+    bottom: 0;
+    width: 0;
+}
+
+.stu-seam {
+    position: absolute;
+    left: -2px;
+    top: 2px;
+    bottom: 2px;
+    width: 4px;
+    background-color: #C3DAF3;
+}
+
+.stu-rings {
+    position: absolute;
+    left: -20px;
+    top: 24px;
+    bottom: 24px;
+    width: 40px;
+    justify-content: space-between;
+}
+
+.stu-ring {
+    height: 13px;
+    background-color: #FBFDFF;
+    border-width: 2.5px;
+    border-color: #1E3A6D;
+    border-radius: 8px;
+}
+
+/* Last, so they win over the colours above. */
+.stu-good { color: #1F5CB8; }
+.stu-bad { color: #C2462A; }

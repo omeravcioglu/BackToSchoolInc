@@ -1,0 +1,353 @@
+/* The Load screen (three save slots as polaroid cards), the title's Load button and Continue
+   photo, the New school "replaces" warning and the clock's "saved" stamp. Classes start with
+   load-, saved- or continue- (USS classes are global). Sizes follow the design canvas. */
+
+/* --- Load sheet --------------------------------------------------------------------------- */
+
+.load-sheet {
+    width: 1140px;
+    height: 548px;
+}
+
+.load-tape {
+    rotate: 2deg;
+    --tape-color: #A8D1F7;
+}
+
+.load-cards {
+    flex-grow: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 24px;
+}
+
+.load-card {
+    width: 320px;
+    height: 324px;
+    margin: 0 17px 0 17px;
+    padding: 16px 16px 14px 16px;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "18 10 16 12 / 12 16 10 18";
+}
+
+.load-card:hover { --ink-fill: #F2F8FE; }
+
+.load-card--on {
+    --ink-fill: #EAF3FD;
+    --ink-border-width: 3;
+    --ink-shadow: #2F6FD0;
+    --ink-shadow-x: 5;
+    --ink-shadow-y: 6;
+}
+
+.load-card--on:hover { --ink-fill: #EAF3FD; }
+
+.load-tilt-a { rotate: -1.2deg; }
+.load-tilt-b { rotate: 1deg; --ink-radius: "10 18 12 16 / 16 12 18 10"; }
+.load-tilt-c { rotate: -0.6deg; }
+
+.load-photo {
+    align-self: flex-start;
+    padding: 8px 8px 12px 8px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #A8C6EA;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "1";
+}
+
+.load-photo--a { rotate: 1.5deg; }
+.load-photo--b { rotate: -1.5deg; }
+
+.load-mini {
+    width: 262px;
+    height: 160px;
+}
+
+.load-name {
+    margin-top: 10px;
+    font-size: 28px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Names with a capital G or a z fall back to Playpen, which runs much wider. */
+.load-name.font-heavy { font-size: 20px; margin-top: 13px; }
+
+.load-date {
+    margin-top: 8px;
+    font-size: 22px;
+    color: #3F5F93;
+}
+
+.load-stats {
+    flex-grow: 1;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.load-stat {
+    flex-direction: row;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.load-stat-value {
+    margin-left: 4px;
+    font-size: 22px;
+}
+
+.load-sticker {
+    position: absolute;
+    right: -12px;
+    top: -14px;
+    padding: 2px 10px 3px 10px;
+    rotate: 6deg;
+    --ink-fill: #A8D1F7;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "12 8 11 7 / 7 11 8 12";
+}
+
+.load-sticker-text { font-size: 12px; }
+
+/* A school that closed stays as a keepsake: a stamp across its photo, and it can't be loaded. */
+.load-closed {
+    position: absolute;
+    left: 66px;
+    top: 58px;
+    padding: 2px 18px 6px 18px;
+    rotate: -8deg;
+    --ink-fill: rgba(255, 227, 218, 0.94);
+    --ink-border: #C2462A;
+    --ink-border-width: 2.5;
+    --ink-radius: "10 6 9 5 / 5 9 6 10";
+}
+
+.load-closed-text {
+    font-size: 36px;
+    color: #B23C20;
+}
+
+/* An empty slot: dashed, with a big plus. Clicking it founds a new school. */
+.load-empty {
+    width: 320px;
+    height: 324px;
+    margin: 0 17px 0 17px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: rgba(251, 253, 255, 0.6);
+    --ink-border: #7FA6D6;
+    --ink-border-width: 3;
+    --ink-dash: 10;
+    --ink-radius: "18 10 16 12 / 12 16 10 18";
+}
+
+.load-empty:hover { --ink-fill: #F2F8FE; }
+
+.load-plus {
+    width: 84px;
+    height: 84px;
+    margin-bottom: 14px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #EAF3FD;
+    --ink-border: #7FA6D6;
+    --ink-border-width: 3;
+    --ink-dash: 8;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.load-plus-icon {
+    width: 40px;
+    height: 40px;
+    --icon-ink: #7FA6D6;
+}
+
+.load-empty-label {
+    font-size: 26px;
+    color: #3F5F93;
+}
+
+.load-empty-hint {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #7FA6D6;
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.15s;
+}
+
+.load-empty:hover > .load-empty-hint { opacity: 1; }
+
+/* Footer: Back, a note, Delete pushed right, then Load. */
+.load-foot { justify-content: flex-start; }
+
+.load-note {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 18px;
+    font-size: 20px;
+    color: #3F5F93;
+}
+
+.load-note--bad { color: #B23C20; }
+
+.load-delete {
+    height: 52px;
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin-right: 14px;
+    padding: 0 18px 0 16px;
+    --ink-fill: #FFF4F0;
+    --ink-border: #C2462A;
+    --ink-border-width: 2.5;
+    --ink-dash: 9;
+    --ink-radius: "22 12 20 10 / 10 20 12 22";
+}
+
+.load-delete:hover { --ink-fill: #FFE9E1; }
+.load-delete--off { opacity: 0.45; }
+.load-delete-icon { --icon-ink: #B23C20; }
+
+.load-delete-label {
+    margin-left: 8px;
+    font-size: 16px;
+    color: #B23C20;
+}
+
+.load-confirm {
+    position: absolute;
+    left: 744px;
+    top: 452px;
+    width: 360px;
+    padding: 18px 18px 16px 18px;
+    rotate: 1.5deg;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 4;
+    --ink-shadow-y: 5;
+    --ink-radius: "4 7 5 6";
+}
+
+.load-confirm-title {
+    flex-shrink: 1;
+    margin-left: 10px;
+    font-size: 28px;
+    white-space: normal;
+}
+
+.load-confirm-sub {
+    margin: 2px 0 0 46px;
+    font-size: 20px;
+    color: #3F5F93;
+}
+
+/* --- Title: the Load button's tilt and the Continue button's photo ---------------------------- */
+
+.tilt-e { rotate: -1deg; }
+
+.continue-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.continue-sub {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.continue-shot {
+    flex-shrink: 0;
+    margin-left: 8px;
+    padding: 4px 4px 9px 4px;
+    rotate: 6deg;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "1";
+}
+
+.continue-mini {
+    width: 54px;
+    height: 42px;
+}
+
+/* --- New school: which save it will replace when every slot is taken -------------------------- */
+
+.ns-replace {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 1;
+    margin: 0 16px 0 16px;
+    padding: 6px 14px 7px 12px;
+    --ink-fill: #FFF4F0;
+    --ink-border: #C2462A;
+    --ink-border-width: 2;
+    --ink-dash: 7;
+    --ink-radius: "12 8 11 7 / 7 11 8 12";
+}
+
+.ns-replace-text {
+    flex-shrink: 1;
+    margin-left: 6px;
+    font-size: 14px;
+    color: #B23C20;
+    white-space: normal;
+}
+
+/* --- In-game menu: when the school last saved itself ----------------------------------------- */
+
+.gm-saved {
+    font-size: 18px;
+    color: #3F5F93;
+}
+
+/* --- The clock's "saved" stamp ----------------------------------------------------------------- */
+
+.saved-stamp {
+    position: absolute;
+    right: 16px;
+    bottom: -13px;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 8px 2px 6px;
+    rotate: -3deg;
+    transition-property: opacity, translate;
+    transition-duration: 0.25s;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "10 6 9 5 / 5 9 6 10";
+}
+
+.saved-stamp--off {
+    opacity: 0;
+    translate: 0px -4px;
+}
+
+.saved-stamp--bad {
+    --ink-fill: #FFE3DA;
+    --ink-border: #C2462A;
+}
+
+.saved-text {
+    margin-left: 3px;
+    font-size: 11px;
+}
+
+.saved-stamp--bad > .saved-text { color: #B23C20; }

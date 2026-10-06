@@ -1,0 +1,763 @@
+/* Campus panels: build mode header, catalog, land and the selected room's card. */
+
+.bld-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+/* --- Header ---------------------------------------------------------------------------- */
+
+.bld-head {
+    position: absolute;
+    left: 92px;
+    top: 112px;
+    width: 452px;
+    padding: 10px 14px 12px 14px;
+    --ink-radius: "22 10 20 12 / 12 20 10 22";
+}
+
+.bld-badge {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #FFE066;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.bld-titles {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 10px;
+    overflow: hidden;
+}
+
+.bld-title {
+    font-size: 28px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bld-hint {
+    font-size: 17px;
+    color: #3F5F93;
+}
+
+.bld-close {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.bld-modes { margin-top: 8px; }
+.bld-mode { font-size: 13px; }
+.bld-modes > .bld-mode { margin-left: 0px; margin-right: 6px; }
+
+.bld-overlay-note {
+    font-size: 17px;
+    color: #3F5F93;
+    margin-right: 2px;
+}
+
+.bld-overlay { font-size: 12px; }
+
+.bld-space-row {
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.bld-space-label { font-size: 13px; }
+
+.bld-space-value {
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.bld-space-bar { margin-top: 4px; }
+
+/* --- Panel ------------------------------------------------------------------------------ */
+
+.bld-panel {
+    position: absolute;
+    right: 24px;
+    top: 116px;
+    bottom: 16px;
+    width: 372px;
+    padding: 12px 14px 12px 14px;
+    --ink-radius: "14 24 12 22 / 22 12 24 14";
+}
+
+.bld-view { flex-grow: 1; }
+
+.bld-cats {
+    flex-direction: row;
+    justify-content: space-between;
+    flex-shrink: 0;
+    margin-bottom: 4px;
+}
+
+.bld-cat {
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.12s;
+    --ink-fill: #EAF3FD;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.bld-cat:hover {
+    --ink-fill: #DCEBFB;
+    translate: 0px -2px;
+}
+
+.bld-cat.bld-cat--on {
+    --ink-fill: #FFE066;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 2;
+    translate: 0px -3px;
+}
+
+.bld-cat-head {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-shrink: 0;
+    margin-top: 4px;
+    margin-bottom: 6px;
+}
+
+.bld-cat-name { font-size: 28px; }
+
+.bld-cat-count {
+    font-size: 18px;
+    color: #3F5F93;
+}
+
+.bld-cards {
+    flex-grow: 1;
+    flex-shrink: 1;
+    min-height: 120px;
+}
+
+.bld-card-row {
+    flex-direction: row;
+    margin-bottom: 10px;
+    padding-left: 2px;
+}
+
+.bld-card {
+    width: 156px;
+    height: 128px;
+    margin-right: 10px;
+    padding: 6px 8px 6px 8px;
+    transition-duration: 0.1s;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.bld-card:hover {
+    --ink-fill: #EAF3FD;
+    translate: 0px -2px;
+}
+
+.bld-card.bld-card--on {
+    --ink-fill: #DCEBFB;
+    --ink-border-width: 3;
+    --ink-shadow: #2F6FD0;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+}
+
+.bld-card--locked { opacity: 0.55; }
+.bld-card--poor > .bld-row > .bld-card-cost { color: #C2462A; }
+
+.bld-thumb {
+    height: 66px;
+    margin-bottom: 3px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.bld-card-name {
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bld-card-cost { font-size: 19px; }
+
+.bld-card-size {
+    font-size: 11px;
+    color: #4A6A9E;
+}
+
+/* The crest on a specialization's own building */
+.bld-sig {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+}
+
+.bld-lock {
+    position: absolute;
+    right: 4px;
+    top: 4px;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 6px 1px 4px;
+    font-size: 11px;
+    background-color: #FBFDFF;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-radius: 8px;
+}
+
+/* --- Detail ----------------------------------------------------------------------------- */
+
+.bld-detail {
+    flex-shrink: 0;
+    margin-top: 6px;
+    padding: 10px 12px 10px 12px;
+    --ink-fill: #EAF3FD;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-dots: #D6E6F7;
+    --ink-radius: "12 6 10 8 / 8 10 6 12";
+}
+
+.bld-name {
+    font-size: 24px;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bld-levels {
+    font-size: 11px;
+    color: #FBFDFF;
+    background-color: #1E3A6D;
+    padding: 1px 7px 2px 7px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.bld-detail-body {
+    align-items: flex-start;
+    margin-top: 4px;
+}
+
+.bld-thumb-big {
+    width: 96px;
+    height: 74px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    -unity-background-scale-mode: scale-to-fit;
+}
+
+.bld-detail-words {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.bld-level1 {
+    font-size: 18px;
+    white-space: normal;
+}
+
+.bld-desc {
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.bld-facts {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.bld-fact {
+    width: 33%;
+    margin-bottom: 4px;
+}
+
+.bld-fact-label {
+    font-size: 11px;
+    color: #3F5F93;
+}
+
+.bld-fact-value { font-size: 17px; }
+
+.bld-extra {
+    font-size: 12px;
+    color: #1F5CB8;
+    white-space: normal;
+}
+
+.bld-extra--bad { color: #C2462A; }
+
+.bld-status {
+    font-size: 17px;
+    color: #3F5F93;
+    white-space: normal;
+    margin-top: 4px;
+}
+
+.bld-status--bad { color: #C2462A; }
+.bld-status--good { color: #1F5CB8; }
+
+.bld-buttons {
+    flex-shrink: 0;
+    margin-top: 8px;
+}
+
+.bld-buttons > .btn {
+    margin-right: 6px;
+    flex-shrink: 1;
+    min-width: 0;
+    padding: 0 12px 0 10px;
+}
+
+/* The card is narrow: tighter buttons than the footer ones, so "Upgrade" and "Repair $292" fit. */
+.bld-buttons > .btn--primary { padding: 0 14px 0 11px; }
+.bld-buttons > .btn--small.btn--primary > .btn-label { font-size: 20px; margin-left: 6px; }
+.bld-buttons > .btn--small > .btn-label { font-size: 13px; margin-left: 5px; }
+
+.bld-buttons > .btn > .btn-label {
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* --- Land ------------------------------------------------------------------------------- */
+
+.bld-land-price {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 10px 12px 10px 12px;
+    margin-bottom: 8px;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "4 7 5 6";
+}
+
+.bld-land-price > .bld-detail-words { margin-left: 10px; }
+
+.bld-land-small {
+    font-size: 17px;
+    color: #3F5F93;
+}
+
+.bld-land-big { font-size: 34px; }
+.bld-land-text { margin-bottom: 8px; }
+
+.bld-parcels {
+    align-items: center;
+    flex-shrink: 0;
+    margin-top: 4px;
+    margin-bottom: 6px;
+}
+
+.bld-parcel-row { flex-direction: row; }
+
+.bld-parcel {
+    width: 44px;
+    height: 40px;
+    margin: 2px;
+    align-items: center;
+    justify-content: center;
+    transition-duration: 0.1s;
+    --ink-fill: #F3F7FC;
+    --ink-border: #BCD5F0;
+    --ink-border-width: 1.5;
+    --ink-radius: "6 4 6 5";
+}
+
+.bld-parcel.bld-parcel--owned {
+    --ink-fill: #BFDCF6;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+}
+
+.bld-parcel.bld-parcel--sale {
+    --ink-fill: #FFF3C4;
+    --ink-border: #2F6FD0;
+    --ink-border-width: 2;
+    --ink-dash: 5;
+}
+
+.bld-parcel.bld-parcel--sale:hover {
+    --ink-fill: #FFE066;
+    translate: 0px -2px;
+}
+
+.bld-parcel-price {
+    font-size: 10px;
+    color: #1F5CB8;
+}
+
+/* With the old estate on the map: smaller cells, and the road between the two campuses */
+.bld-parcels--wide .bld-parcel {
+    width: 29px;
+    height: 29px;
+}
+
+.bld-parcels--wide .bld-parcel-price { font-size: 9px; }
+
+.bld-road {
+    width: 6px;
+    margin: 0 1px 0 1px;
+    border-left-width: 1.5px;
+    border-right-width: 1.5px;
+    border-color: #9CC3EC;
+    background-color: #EEF3F9;
+}
+
+.bld-parcel.bld-parcel--estate {
+    --ink-fill: #E4F0FC;
+    --ink-border: #9CC3EC;
+    --ink-dash: 3;
+}
+
+.bld-parcel.bld-parcel--estate.bld-parcel--owned {
+    --ink-fill: #BFDCF6;
+    --ink-border: #1E3A6D;
+    --ink-dash: 0;
+}
+
+.bld-parcel.bld-parcel--estate.bld-parcel--sale {
+    --ink-fill: #FFF3C4;
+    --ink-border: #2F6FD0;
+    --ink-dash: 5;
+}
+
+.bld-estate {
+    flex-shrink: 0;
+    margin: 2px 0 6px 0;
+    padding: 8px 12px 10px 12px;
+    --ink-fill: #EAF3FD;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-dots: #D6E6F7;
+    --ink-radius: "12 6 10 8 / 8 10 6 12";
+}
+
+.bld-estate-title {
+    font-size: 24px;
+    margin-left: 6px;
+}
+
+.bld-estate-price {
+    font-size: 24px;
+    color: #1F5CB8;
+}
+
+.bld-estate-buy {
+    align-self: flex-end;
+    margin-top: 6px;
+}
+
+.bld-legend {
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 11px;
+    color: #3F5F93;
+}
+
+.bld-swatch {
+    width: 14px;
+    height: 14px;
+    margin-left: 10px;
+    margin-right: 4px;
+    background-color: #F3F7FC;
+    border-width: 1.5px;
+    border-color: #BCD5F0;
+    border-radius: 3px;
+}
+
+.bld-swatch--owned {
+    background-color: #BFDCF6;
+    border-color: #1E3A6D;
+}
+
+.bld-swatch--sale {
+    background-color: #FFF3C4;
+    border-color: #2F6FD0;
+}
+
+/* --- Selected room ------------------------------------------------------------------- */
+
+.bld-room-head {
+    flex-shrink: 0;
+    margin-bottom: 2px;
+}
+
+.bld-dots {
+    flex-direction: row;
+    align-items: center;
+}
+
+.bld-dot {
+    width: 11px;
+    height: 11px;
+    margin-right: 3px;
+    background-color: #FBFDFF;
+    border-width: 2px;
+    border-color: #7FA6D6;
+    border-radius: 6px;
+}
+
+.bld-dot--on {
+    background-color: #2F6FD0;
+    border-color: #1E3A6D;
+}
+
+.bld-dot--next {
+    background-color: #FFE066;
+    border-color: #1E3A6D;
+}
+
+.bld-room-level {
+    font-size: 11px;
+    color: #3F5F93;
+    margin-left: 4px;
+}
+
+.bld-room-status {
+    font-size: 19px;
+    white-space: normal;
+    flex-shrink: 0;
+    margin-top: 4px;
+    margin-bottom: 6px;
+}
+
+.bld-room-status--bad { color: #C2462A; }
+
+.bld-room-scroll {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.bld-meter { margin-top: 6px; }
+.bld-meter-icon { margin-right: 6px; }
+
+.bld-meter-label {
+    width: 84px;
+    font-size: 13px;
+}
+
+.bld-meter-bar { flex-grow: 1; }
+
+.bld-meter-value {
+    width: 32px;
+    font-size: 18px;
+    -unity-text-align: middle-right;
+}
+
+.bld-usage-row { margin-top: 10px; }
+.bld-usage { font-size: 13px; }
+
+.bld-upkeep {
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.bld-residents {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 6px;
+}
+
+.bld-face {
+    width: 62px;
+    padding: 4px 2px 3px 2px;
+    margin: 0 6px 6px 0;
+    align-items: center;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 1.5;
+    --ink-radius: "10 6 9 7 / 7 9 6 10";
+}
+
+.bld-face:hover { --ink-fill: #EAF3FD; }
+
+.bld-face-pic {
+    width: 38px;
+    height: 48px;
+}
+
+.bld-face-name {
+    font-size: 11px;
+    max-width: 58px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.bld-next {
+    margin-top: 10px;
+    padding: 8px 10px 8px 10px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #2F6FD0;
+    --ink-border-width: 2;
+    --ink-dash: 7;
+    --ink-radius: "12 8 10 6 / 6 10 8 12";
+}
+
+.bld-next-pill {
+    color: #FFFFFF;
+    background-color: #2F6FD0;
+}
+
+.bld-next-cost { font-size: 22px; }
+
+.bld-next-text {
+    font-size: 18px;
+    white-space: normal;
+    margin-top: 2px;
+}
+
+.bld-why {
+    font-size: 12px;
+    color: #C2462A;
+    white-space: normal;
+    margin-top: 6px;
+}
+
+.bld-round {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    margin-left: 4px;
+}
+
+.bld-demolish {
+    --ink-fill: #FFF4F0;
+    --ink-border: #C2462A;
+    --ink-dash: 5;
+}
+
+.bld-demolish:hover { --ink-fill: #FFE3DA; }
+.bld-demolish.bld-demolish--armed { --ink-fill: #FF8C6E; --ink-dash: 0; }
+
+.bld-demolish-label {
+    position: absolute;
+    right: 46px;
+    top: 8px;
+    font-size: 12px;
+    color: #FFFFFF;
+    background-color: #C2462A;
+    padding: 1px 8px 2px 8px;
+    border-radius: 8px;
+}
+
+/* --- Room card: a construction site, and who's in the room -------------------------------- */
+
+.bld-site {
+    margin-top: 8px;
+    padding: 8px 10px 8px 10px;
+    --ink-fill: #FFF8DB;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-dash: 7;
+    --ink-radius: "12 8 10 6 / 6 10 8 12";
+}
+
+.bld-site-pill { background-color: #FFE066; }
+.bld-site-days { font-size: 20px; }
+
+.bld-site-bar {
+    height: 14px;
+    margin-top: 7px;
+}
+
+.bld-site-fill { background-color: #FFE066; }
+
+.bld-site-note {
+    font-size: 17px;
+    color: #3F5F93;
+    white-space: normal;
+    margin-top: 4px;
+}
+
+.bld-here {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 10px;
+    padding: 6px 10px 6px 10px;
+    --ink-fill: #EAF3FD;
+    --ink-border: #9CC3EC;
+    --ink-border-width: 2;
+    --ink-dash: 6;
+    --ink-radius: "12 8 10 6 / 6 10 8 12";
+}
+
+.bld-here-faces {
+    flex-direction: row;
+    flex-shrink: 0;
+    margin-right: 14px;
+}
+
+.bld-here-face {
+    width: 32px;
+    height: 32px;
+    margin-right: -8px;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    --ink-fill: #DCEBFB;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50%";
+}
+
+.bld-here-face:hover { --ink-fill: #FFF3C4; }
+
+.bld-here-pic {
+    width: 24px;
+    height: 30px;
+    flex-shrink: 0;
+    margin-bottom: -5px;
+}
+
+.bld-here-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 19px;
+    white-space: normal;
+}
+
+/* Names with a capital G or a z fall back to Playpen, which runs much wider. */
+.bld-title.font-heavy { font-size: 20px; }
+
+/* The repair cost as a little tag on the Repair button's corner. */
+.bld-price-tag {
+    position: absolute;
+    right: -8px;
+    top: -11px;
+    padding: 0 6px 1px 6px;
+    font-size: 11px;
+    color: #1E3A6D;
+    background-color: #FFE066;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-radius: 8px;
+    rotate: 4deg;
+}

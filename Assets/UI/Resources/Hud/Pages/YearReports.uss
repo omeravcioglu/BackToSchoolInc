@@ -1,0 +1,341 @@
+/* Year reports: each school year as a report card, with grades, the year in numbers,
+   highlights and the graduating class. Built from GameHud.YearReports.cs. */
+
+.yrp-col { flex-grow: 1; }
+
+.yrp-head {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    min-height: 70px;
+    margin-bottom: 10px;
+}
+
+.yrp-titles {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.yrp-title { font-size: 40px; }
+
+.yrp-sub {
+    font-size: 20px;
+    color: #3F5F93;
+    margin-top: -4px;
+}
+
+.yrp-overall {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 0 22px 0 12px;
+}
+
+.yrp-burst {
+    width: 76px;
+    height: 76px;
+    rotate: -6deg;
+}
+
+.yrp-burst > .burst-number {
+    top: 14px;
+    font-size: 42px;
+}
+
+.yrp-overall-text { margin-left: 8px; }
+
+.yrp-overall-label {
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.yrp-overall-comment {
+    font-size: 24px;
+    margin-top: -4px;
+}
+
+.yrp-years {
+    flex-shrink: 1;
+    max-width: 44%;
+}
+
+.yrp-pills {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.yrp-pills > .pill-btn { margin-bottom: 4px; }
+
+.yrp-body {
+    flex-grow: 1;
+    flex-direction: row;
+}
+
+.yrp-body--empty {
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.yrp-scroll { flex-grow: 1; }
+
+/* Grades */
+
+.yrp-grades {
+    width: 392px;
+    flex-shrink: 0;
+    margin-right: 16px;
+    padding-right: 6px;
+}
+
+.yrp-list { padding-right: 10px; }
+
+.yrp-row {
+    flex-direction: row;
+    align-items: center;
+    height: 34px;
+}
+
+.yrp-row-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+}
+
+.yrp-row-name {
+    width: 104px;
+    flex-shrink: 0;
+    font-size: 13px;
+}
+
+.yrp-row-bar {
+    flex-grow: 1;
+    margin-right: 8px;
+}
+
+.yrp-row-value {
+    width: 30px;
+    font-size: 22px;
+    -unity-text-align: middle-right;
+}
+
+.yrp-row-delta {
+    width: 40px;
+    font-size: 12px;
+    color: #3F5F93;
+    -unity-text-align: middle-right;
+    margin-right: 10px;
+}
+
+.yrp-row-delta--up { color: #1F5CB8; }
+.yrp-row-delta--down { color: #C2462A; }
+
+.yrp-grade {
+    width: 30px;
+    height: 30px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.yrp-grade > Label { font-size: 20px; }
+
+.yrp-grade--good {
+    --ink-fill: #DCEBFB;
+    --ink-border: #1F5CB8;
+}
+
+.yrp-grade--good > Label { color: #1F5CB8; }
+
+.yrp-grade--bad {
+    --ink-fill: #FFE3DA;
+    --ink-border: #B23C20;
+}
+
+.yrp-grade--bad > Label { color: #B23C20; }
+
+.yrp-divider {
+    flex-direction: row;
+    align-items: center;
+    margin: 8px 0 2px 0;
+}
+
+.yrp-divider-label {
+    font-size: 19px;
+    color: #3F5F93;
+    margin-right: 8px;
+}
+
+.yrp-divider-line {
+    flex-grow: 1;
+    height: 2px;
+    --dash-color: #BCD5F0;
+}
+
+/* The year in numbers */
+
+.yrp-numbers {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 16px;
+    padding-right: 6px;
+}
+
+.yrp-tiles {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 2px 10px 4px 0;
+}
+
+.yrp-tile {
+    width: 48%;
+    margin-bottom: 12px;
+    padding: 7px 10px 9px 10px;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "10 14 8 12 / 12 8 14 10";
+}
+
+.yrp-tile--b { --ink-radius: "14 8 12 10 / 10 12 8 14"; }
+
+.yrp-tile-top {
+    flex-direction: row;
+    align-items: center;
+}
+
+.yrp-tile-label {
+    font-size: 18px;
+    color: #3F5F93;
+    margin-left: 6px;
+}
+
+.yrp-tile-row {
+    flex-direction: row;
+    align-items: center;
+}
+
+.yrp-tile-value { font-size: 30px; }
+.yrp-tile-value--good { color: #1F5CB8; }
+.yrp-tile-value--bad { color: #C2462A; }
+
+.yrp-tile-arrow { margin: 0 6px 0 6px; }
+
+.yrp-tile-sub {
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+/* Highlights and the graduating class */
+
+.yrp-notes {
+    width: 316px;
+    flex-shrink: 0;
+}
+
+.yrp-sticky {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-bottom: 14px;
+    padding: 16px 6px 10px 14px;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "4 6 5 3";
+}
+
+.yrp-tape {
+    left: 118px;
+    top: -11px;
+    width: 74px;
+    height: 22px;
+    rotate: -3deg;
+}
+
+.yrp-class {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding-right: 6px;
+}
+
+.yrp-note-title {
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.yrp-bullet {
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 0 10px 6px 0;
+}
+
+.yrp-bullet-icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin: 1px 7px 0 0;
+}
+
+.yrp-bullet-text {
+    font-size: 12px;
+    white-space: normal;
+    flex-shrink: 1;
+}
+
+.yrp-grad-text { flex-shrink: 1; }
+
+.yrp-grad-name { font-size: 13px; }
+
+.yrp-grad-dest {
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.yrp-quiet {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+/* Before the first report */
+
+.yrp-empty {
+    width: 560px;
+    margin-top: 24px;
+    align-items: center;
+    padding: 22px 26px 20px 26px;
+}
+
+.yrp-empty-icon {
+    width: 64px;
+    height: 64px;
+}
+
+.yrp-empty-title {
+    font-size: 32px;
+    margin-top: 6px;
+    white-space: normal;
+    -unity-text-align: upper-center;
+}
+
+.yrp-empty-text {
+    font-size: 21px;
+    color: #3F5F93;
+    white-space: normal;
+    -unity-text-align: upper-center;
+    margin-bottom: 8px;
+}
+
+.yrp-so-far { align-self: stretch; }

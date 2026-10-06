@@ -1,0 +1,215 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Style src="Hud.uss" />
+    <ui:Style src="Screens.uss" />
+    <ui:VisualElement name="hud" class="hud" picking-mode="Ignore">
+
+        <!-- Top bar -->
+        <ui:VisualElement name="topBar" class="top-bar" picking-mode="Ignore">
+            <SchoolSim.Game.InkBox name="badge" class="card badge">
+                <SchoolSim.Game.Tape class="tape tape--badge" />
+                <SchoolSim.Game.InkBox name="crest" class="crest">
+                    <SchoolSim.Game.InkIcon name="crestIcon" icon="crest" class="icon-34" />
+                </SchoolSim.Game.InkBox>
+                <ui:VisualElement class="badge-text">
+                    <ui:Label name="schoolName" text="Little Oak School" class="font-hand badge-name" />
+                    <ui:VisualElement class="badge-row">
+                        <ui:Label name="levelPill" text="Lv 1" class="font-heavy lv-pill" />
+                        <ui:VisualElement class="xp-bar">
+                            <ui:VisualElement name="xpFill" class="xp-fill" />
+                        </ui:VisualElement>
+                        <ui:Label name="nextUnlock" text="" class="font-note badge-note" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </SchoolSim.Game.InkBox>
+
+            <SchoolSim.Game.InkBox name="resources" class="card resources">
+                <ui:VisualElement class="res res--cash">
+                    <SchoolSim.Game.InkIcon icon="coin" class="icon-34 res-icon" />
+                    <ui:VisualElement class="res-text">
+                        <ui:Label name="cashValue" text="$0" class="font-hand res-value" />
+                        <ui:Label name="cashSub" text="" class="font-heavy res-sub" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <SchoolSim.Game.DashLine class="res-divider" />
+                <ui:VisualElement class="res res--students">
+                    <SchoolSim.Game.InkIcon icon="students" class="icon-34 res-icon" />
+                    <ui:VisualElement class="res-text">
+                        <ui:VisualElement class="res-value-row">
+                            <ui:Label name="studentsValue" text="0" class="font-hand res-value" />
+                            <ui:Label name="bedsValue" text="/0" class="font-hand res-value-small" />
+                        </ui:VisualElement>
+                        <ui:Label name="studentsSub" text="" class="font-semi res-sub" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <SchoolSim.Game.DashLine class="res-divider" />
+                <ui:VisualElement class="res res--prestige">
+                    <SchoolSim.Game.InkIcon icon="star" class="icon-34 res-icon" />
+                    <ui:VisualElement class="res-text">
+                        <ui:VisualElement class="res-value-row">
+                            <ui:Label name="prestigeValue" text="0" class="font-hand res-value" />
+                            <ui:Label name="rankPill" text="#1" class="font-heavy rank-pill" />
+                        </ui:VisualElement>
+                        <ui:Label text="prestige" class="font-semi res-sub" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <SchoolSim.Game.DashLine class="res-divider" />
+                <ui:VisualElement class="res res--small">
+                    <SchoolSim.Game.InkIcon icon="smile" class="icon-32 res-icon" />
+                    <ui:VisualElement class="res-text">
+                        <ui:VisualElement class="res-value-row">
+                            <ui:Label name="moodValue" text="0" class="font-hand res-value" />
+                            <ui:Label name="moodDelta" text="" class="font-heavy delta" />
+                        </ui:VisualElement>
+                        <ui:Label text="mood" class="font-semi res-sub" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <SchoolSim.Game.DashLine name="trustDivider" class="res-divider" />
+                <ui:VisualElement name="trustBox" class="res res--small">
+                    <SchoolSim.Game.InkIcon icon="heart" class="icon-32 res-icon" />
+                    <ui:VisualElement class="res-text">
+                        <ui:VisualElement class="res-value-row">
+                            <ui:Label name="trustValue" text="0" class="font-hand res-value" />
+                            <ui:Label name="trustDelta" text="" class="font-heavy delta" />
+                        </ui:VisualElement>
+                        <ui:Label text="trust" class="font-semi res-sub" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </SchoolSim.Game.InkBox>
+
+            <SchoolSim.Game.InkBox name="clock" class="card clock">
+                <SchoolSim.Game.InkBox class="cal-page">
+                    <ui:VisualElement class="cal-month">
+                        <ui:Label name="calMonth" text="SEP" class="font-heavy cal-month-label" />
+                    </ui:VisualElement>
+                    <ui:VisualElement class="cal-body">
+                        <ui:Label name="calDay" text="1" class="font-hand cal-day" />
+                        <ui:Label name="calWeekday" text="Mon" class="cal-weekday" />
+                    </ui:VisualElement>
+                </SchoolSim.Game.InkBox>
+                <ui:VisualElement class="clock-right">
+                    <ui:Label name="term" text="Year 1 · Semester 1" class="clock-term" />
+                    <ui:VisualElement class="clock-row">
+                        <SchoolSim.Game.DayDial name="dayDial" class="clock-dial" />
+                        <ui:Label name="timeOfDay" text="morning" class="font-note clock-time" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </SchoolSim.Game.InkBox>
+        </ui:VisualElement>
+
+        <!-- Notebook divider tabs -->
+        <ui:VisualElement name="nav" class="nav" picking-mode="Ignore">
+            <SchoolSim.Game.InkBox name="tabInbox" class="nav-tab tab-inbox">
+                <SchoolSim.Game.InkIcon icon="envelope" class="icon-22" />
+                <ui:Label text="Inbox" class="nav-label" />
+                <ui:Label name="inboxBadge" text="0" class="font-heavy nav-badge hidden" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabNews" class="nav-tab nav-tab--b tab-blue">
+                <SchoolSim.Game.InkIcon icon="news" class="icon-22" />
+                <ui:Label text="News" class="nav-label" />
+                <ui:Label name="newsBadge" text="0" class="font-heavy nav-badge hidden" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabStudents" class="nav-tab">
+                <SchoolSim.Game.InkIcon icon="people" class="icon-22" />
+                <ui:Label text="Students" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabStaff" class="nav-tab nav-tab--b tab-blue">
+                <SchoolSim.Game.InkIcon icon="staff" class="icon-22" />
+                <ui:Label text="Staff" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabBuild" class="nav-tab tab-deep">
+                <SchoolSim.Game.InkIcon icon="pencil" class="icon-22" />
+                <ui:Label text="Build" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabMoney" class="nav-tab nav-tab--b">
+                <SchoolSim.Game.InkIcon icon="coin" class="icon-22" />
+                <ui:Label text="Money" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabClubs" class="nav-tab tab-blue">
+                <SchoolSim.Game.InkIcon icon="trophy" class="icon-22" />
+                <ui:Label text="Clubs" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabStats" class="nav-tab nav-tab--b tab-deep">
+                <SchoolSim.Game.InkIcon icon="chart" class="icon-22" />
+                <ui:Label text="Stats" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabRanks" class="nav-tab">
+                <SchoolSim.Game.InkIcon icon="podium" class="icon-22" />
+                <ui:Label text="Ranks" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabRules" class="nav-tab nav-tab--b tab-blue">
+                <SchoolSim.Game.InkIcon icon="sliders" class="icon-22" />
+                <ui:Label text="Rules" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+            <SchoolSim.Game.InkBox name="tabMore" class="nav-tab tab-deep">
+                <SchoolSim.Game.InkIcon icon="dots" class="icon-22" />
+                <ui:Label text="More" class="nav-label" />
+            </SchoolSim.Game.InkBox>
+        </ui:VisualElement>
+
+        <!-- Inbox, promises and vitals -->
+        <ui:VisualElement name="rightColumn" class="right-col" picking-mode="Ignore">
+            <SchoolSim.Game.InkBox name="inboxCard" class="card inbox-card">
+                <ui:VisualElement class="clip" picking-mode="Ignore">
+                    <ui:VisualElement class="clip-slot" picking-mode="Ignore" />
+                </ui:VisualElement>
+                <ui:VisualElement class="inbox-head">
+                    <ui:VisualElement class="inbox-title-row">
+                        <ui:Label text="Inbox" class="font-hand inbox-title" />
+                        <ui:Label name="inboxPill" text="" class="font-heavy pill" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="openAll" class="link">
+                        <ui:Label text="open all" class="font-note link-label" />
+                        <SchoolSim.Game.InkIcon icon="arrow" class="icon-18 icon--blue" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="inboxRows" />
+                <ui:Label name="inboxEmpty" text="Nothing new. Enjoy the quiet." class="font-note inbox-empty hidden" />
+            </SchoolSim.Game.InkBox>
+
+            <SchoolSim.Game.InkBox name="promises" class="sticky promises hidden">
+                <SchoolSim.Game.Tape class="tape tape--sticky" />
+                <ui:VisualElement class="promises-head">
+                    <ui:Label text="Promises" class="font-hand promises-title" />
+                    <ui:Label name="promisesNote" text="they remember" class="font-note promises-note" />
+                </ui:VisualElement>
+                <ui:VisualElement name="promiseRows" />
+            </SchoolSim.Game.InkBox>
+
+            <SchoolSim.Game.InkBox name="vitals" class="card vitals">
+                <ui:VisualElement class="vitals-head">
+                    <ui:Label text="School vitals" class="font-hand vitals-title" />
+                    <ui:VisualElement name="whyLink" class="link">
+                        <SchoolSim.Game.InkIcon icon="help" class="icon-18 icon--blue link-icon" />
+                        <ui:Label text="why?" class="font-note link-label" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="vitalRows" />
+            </SchoolSim.Game.InkBox>
+        </ui:VisualElement>
+
+        <!-- Title strip over screens that the debug UI still draws -->
+        <SchoolSim.Game.InkBox name="sheetHead" class="card sheet-head">
+            <SchoolSim.Game.InkBox class="sheet-icon">
+                <SchoolSim.Game.InkIcon name="sheetIcon" icon="envelope" class="icon-24" />
+            </SchoolSim.Game.InkBox>
+            <ui:Label name="sheetTitle" text="" class="font-hand sheet-title" />
+            <ui:VisualElement class="spacer" />
+            <ui:Label text="Esc closes" class="font-note sheet-hint" />
+            <SchoolSim.Game.InkBox name="sheetClose" class="round-btn close-btn">
+                <SchoolSim.Game.InkIcon icon="close" class="icon-18" />
+            </SchoolSim.Game.InkBox>
+        </SchoolSim.Game.InkBox>
+
+        <!-- Notebook pages (news, statistics, rankings) are built from code into this card -->
+        <SchoolSim.Game.InkBox name="pageHost" class="page hidden" />
+
+        <!-- The assistant: portrait, speech bubble and the tutorial's pointer -->
+        <ui:VisualElement name="dock" class="dock hidden" picking-mode="Ignore" />
+        <SchoolSim.Game.InkIcon name="tutArrow" icon="arrow" class="tut-arrow hidden" />
+
+        <!-- More menu (rows are added from code) -->
+        <SchoolSim.Game.InkBox name="moreMenu" class="card more-menu" />
+
+        <ui:VisualElement name="toasts" class="toasts" picking-mode="Ignore" />
+    </ui:VisualElement>
+</ui:UXML>

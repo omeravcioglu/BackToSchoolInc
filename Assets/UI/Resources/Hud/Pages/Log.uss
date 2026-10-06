@@ -1,0 +1,199 @@
+/* School log: a diary with a section per month, the dates in the margin and big moments in
+   marker, plus month bookmarks. Built from GameHud.Log.cs. */
+
+.log-diary {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-right: 18px;
+    padding: 12px 6px 10px 18px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 4;
+    --ink-shadow-y: 5;
+    --ink-radius: "8 14 10 16 / 16 10 14 8";
+}
+
+.log-head {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    padding-right: 12px;
+    margin-bottom: 4px;
+}
+
+.log-title { font-size: 36px; }
+
+.log-note {
+    flex-grow: 1;
+    font-size: 20px;
+    color: #3F5F93;
+    margin: 6px 0 0 14px;
+}
+
+.log-scroll { flex-grow: 1; }
+
+.log-page { padding: 0 12px 10px 0; }
+
+.log-month {
+    flex-direction: row;
+    align-items: flex-end;
+    margin: 10px 0 4px 0;
+}
+
+.log-month-name { font-size: 30px; }
+
+.log-month-sub {
+    font-size: 19px;
+    color: #3F5F93;
+    margin: 0 0 4px 10px;
+}
+
+.log-month-line {
+    flex-grow: 1;
+    height: 2px;
+    margin: 0 0 11px 12px;
+    --dash-color: #BCD5F0;
+}
+
+.log-day { flex-direction: row; }
+
+.log-date {
+    width: 62px;
+    flex-shrink: 0;
+    align-items: center;
+    padding-top: 2px;
+}
+
+.log-date-num { font-size: 28px; }
+
+.log-date-week {
+    font-size: 16px;
+    color: #3F5F93;
+    margin-top: -6px;
+}
+
+.log-date-week--now { color: #2F6FD0; }
+
+.log-lines {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding: 6px 8px 8px 12px;
+    border-left-width: 2px;
+    border-bottom-width: 1.5px;
+    border-left-color: #FFB4A2;
+    border-bottom-color: #E8F0FA;
+}
+
+.log-line {
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 1px 0 1px 0;
+    padding: 2px 8px 3px 4px;
+}
+
+.log-line--big {
+    margin: 3px 0 3px 0;
+    background-color: #FFF3C4;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 5px;
+}
+
+.log-bullet {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    margin: 7px 11px 0 6px;
+    background-color: #5A9BEA;
+    border-radius: 3px;
+}
+
+.log-star {
+    width: 17px;
+    height: 17px;
+    margin: 1px 6px 0 0;
+}
+
+.log-text {
+    font-size: 13px;
+    white-space: normal;
+    flex-shrink: 1;
+}
+
+.log-side {
+    width: 270px;
+    flex-shrink: 0;
+    padding: 18px 6px 12px 14px;
+    --ink-fill: #D4E8FC;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "4 6 5 3";
+}
+
+.log-side-tape {
+    left: 96px;
+    top: -11px;
+    width: 74px;
+    height: 22px;
+    rotate: -3deg;
+}
+
+.log-side-title {
+    font-size: 28px;
+    margin-bottom: 4px;
+}
+
+.log-months { flex-grow: 1; }
+
+.log-month-row {
+    flex-direction: row;
+    align-items: center;
+    height: 34px;
+    padding: 0 8px 0 8px;
+    margin-right: 8px;
+    border-radius: 10px;
+}
+
+.log-month-row:hover { background-color: rgba(251, 253, 255, 0.75); }
+
+.log-month-row-name {
+    font-size: 14px;
+    flex-grow: 1;
+}
+
+.log-month-row-count {
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.log-month-row-stars {
+    flex-direction: row;
+    align-items: center;
+    margin-left: 8px;
+}
+
+.log-month-row-stars > Label {
+    font-size: 12px;
+    margin-left: 2px;
+}
+
+.log-side-empty {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+    margin: 6px 8px 0 0;
+}
+
+.log-side-note {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+    flex-shrink: 0;
+    margin: 8px 8px 0 0;
+}

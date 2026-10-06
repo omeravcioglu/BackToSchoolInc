@@ -1,0 +1,17 @@
+{
+    "name": "SchoolSim.Game",
+    "rootNamespace": "SchoolSim.Game",
+    "references": [
+        "SchoolSim.Core",
+        "Unity.InputSystem"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

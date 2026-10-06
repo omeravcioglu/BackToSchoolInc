@@ -1,0 +1,952 @@
+/* Inbox: a clipboard of letters, the open letter on lined paper, and the reply cards.
+   Built from GameHud.Inbox*.cs. Same notebook look as Screens.uss. */
+
+/* --- Clipboard ---------------------------------------------------------------------------- */
+
+.ibx-board {
+    width: 322px;
+    flex-shrink: 0;
+    margin-right: 16px;
+    padding: 20px 6px 10px 14px;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "14 26 12 22 / 22 12 26 14";
+}
+
+.ibx-clip {
+    position: absolute;
+    left: 113px;
+    top: -14px;
+    width: 96px;
+    height: 28px;
+    align-items: center;
+    justify-content: center;
+    background-color: #1E3A6D;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+
+.ibx-clip-slot {
+    width: 34px;
+    height: 9px;
+    background-color: #EEF5FD;
+    border-radius: 5px;
+}
+
+.ibx-board-head {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-shrink: 0;
+    padding-right: 10px;
+}
+
+.ibx-board-title { font-size: 34px; }
+
+.ibx-board-note {
+    font-size: 20px;
+    color: #3F5F93;
+    margin-bottom: 5px;
+}
+
+.ibx-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    margin: 4px 8px 6px 0;
+}
+
+.ibx-filter > .pill-btn {
+    margin-left: 0;
+    margin-right: 6px;
+}
+
+.ibx-link {
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 6px 2px 4px;
+    border-radius: 8px;
+}
+
+.ibx-link:hover { background-color: #EAF3FD; }
+
+.ibx-link-label {
+    font-size: 18px;
+    color: #2F6FD0;
+    margin-left: 3px;
+}
+
+.ibx-list { flex-grow: 1; }
+
+.ibx-group {
+    flex-direction: row;
+    align-items: center;
+    margin: 6px 12px 2px 2px;
+}
+
+.ibx-group-label {
+    font-size: 19px;
+    color: #3F5F93;
+    margin-right: 8px;
+}
+
+.ibx-group-line {
+    flex-grow: 1;
+    height: 2px;
+    --dash-color: #BCD5F0;
+}
+
+.ibx-row {
+    flex-direction: row;
+    align-items: center;
+    padding: 6px 8px 6px 6px;
+    margin-right: 10px;
+    border-radius: 10px;
+    --ink-border: #1E3A6D;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.ibx-row:hover { background-color: rgba(220, 235, 251, 0.6); }
+
+.ibx-row--on {
+    --ink-fill: #DCEBFB;
+    --ink-border-width: 2.5;
+    --ink-shadow: #2F6FD0;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 3;
+}
+
+.ibx-row--on:hover { background-color: rgba(0, 0, 0, 0); }
+
+.ibx-sep {
+    height: 2px;
+    margin: 2px 16px 2px 8px;
+    --dash-color: #D6E6F7;
+}
+
+.ibx-badge {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #DCEBFB;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 45% 52% 46% / 46% 52% 45% 50%";
+}
+
+.ibx-badge--urgent { --ink-fill: #FFE3DA; }
+.ibx-badge--important { --ink-fill: #FFF3C4; }
+
+.ibx-badge--past {
+    --ink-fill: #EEF5FD;
+    --ink-border: #7FA6D6;
+}
+
+.ibx-dot {
+    position: absolute;
+    left: -3px;
+    top: -3px;
+    width: 12px;
+    height: 12px;
+    background-color: #2F6FD0;
+    border-width: 2px;
+    border-color: #FBFDFF;
+    border-radius: 6px;
+}
+
+.ibx-row-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.ibx-row-sender {
+    font-size: 12px;
+    color: #3F5F93;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ibx-row-subject {
+    font-size: 15px;
+    margin-top: -1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ibx-row--unread .ibx-row-subject { -unity-font-definition: url("project://database/Assets/UI/Resources/Fonts/PlaypenSans-ExtraBold.ttf"); }
+
+.ibx-row--past .ibx-row-subject {
+    font-size: 14px;
+    color: #3F5F93;
+}
+
+.ibx-row-foot {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ibx-row-note {
+    font-size: 18px;
+    color: #3F5F93;
+    margin-top: -2px;
+    flex-shrink: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ibx-row-note--due { color: #C2462A; }
+
+.ibx-row-foot > .stamp {
+    margin-top: 0;
+    font-size: 11px;
+    padding: 0 6px 1px 6px;
+}
+
+.ibx-more {
+    font-size: 19px;
+    color: #2F6FD0;
+    -unity-text-align: middle-center;
+    margin: 6px 12px 4px 0;
+    padding: 3px 0 4px 0;
+    border-radius: 8px;
+}
+
+.ibx-more:hover { background-color: #EAF3FD; }
+
+.ibx-lock-note {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 8px 8px 2px 0;
+    padding: 8px 10px 8px 10px;
+    --ink-fill: #EEF5FD;
+    --ink-border: #9CC3EC;
+    --ink-border-width: 2;
+    --ink-dash: 6;
+    --ink-radius: "12 8 10 6 / 6 10 8 12";
+}
+
+.ibx-lock-text {
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+    flex-shrink: 1;
+    margin-left: 8px;
+}
+
+/* --- The letter ------------------------------------------------------------------------------ */
+
+.ibx-letter {
+    flex-grow: 1.2;
+    flex-basis: 0;
+    margin-right: 18px;
+    padding: 16px 6px 10px 64px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 4;
+    --ink-shadow-y: 5;
+    --ink-radius: "6 10 8 12 / 12 8 10 6";
+}
+
+.ibx-margin {
+    position: absolute;
+    left: 50px;
+    top: 3px;
+    bottom: 3px;
+    width: 2px;
+    background-color: #FFB4A2;
+}
+
+.ibx-hole {
+    position: absolute;
+    left: 15px;
+    width: 18px;
+    height: 18px;
+    --ink-fill: #7F93B5;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50%";
+}
+
+.ibx-hole--a { top: 15%; }
+.ibx-hole--b { top: 47%; }
+.ibx-hole--c { top: 79%; }
+
+.ibx-letter-tape {
+    left: 38%;
+    top: -12px;
+    width: 86px;
+    height: 24px;
+    rotate: -2deg;
+}
+
+.ibx-letter-scroll { flex-grow: 1; }
+
+.ibx-letter-page { padding: 6px 14px 12px 0; }
+
+.ibx-head {
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.ibx-from {
+    flex-grow: 1;
+    flex-shrink: 1;
+    padding-right: 10px;
+}
+
+.ibx-from-label {
+    font-size: 19px;
+    color: #3F5F93;
+}
+
+.ibx-from-name {
+    font-size: 17px;
+    white-space: normal;
+    margin-top: -3px;
+}
+
+.ibx-from-detail {
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.ibx-dates {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 2px;
+}
+
+.ibx-dates > .ibx-from-detail { margin-right: 8px; }
+
+.ibx-due {
+    font-size: 11px;
+    padding: 0 7px 1px 7px;
+    margin-top: 1px;
+    background-color: #DCEBFB;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 5px;
+}
+
+.ibx-due--soon {
+    color: #C2462A;
+    background-color: #FFF4F0;
+    border-color: #C2462A;
+}
+
+.ibx-stamp-box {
+    width: 66px;
+    height: 80px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 4px 3px 4px;
+    rotate: 4deg;
+    --ink-fill: #DCEBFB;
+    --ink-border: #5A9BEA;
+    --ink-border-width: 3;
+    --ink-dash: 3;
+    --ink-radius: "3";
+}
+
+.ibx-stamp-face {
+    width: 42px;
+    height: 52px;
+}
+
+.ibx-stamp-icon {
+    width: 32px;
+    height: 32px;
+    margin: 6px 0 4px 0;
+}
+
+.ibx-stamp-word {
+    font-size: 15px;
+    max-width: 60px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ibx-status {
+    align-self: flex-start;
+    margin: 9px 0 0 4px;
+    font-size: 15px;
+    letter-spacing: 2px;
+    padding: 3px 9px 2px 11px;
+    rotate: -8deg;
+    color: #1E3A6D;
+    background-color: rgba(255, 224, 102, 0.85);
+    border-width: 3px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 4px;
+}
+
+.ibx-status--bad {
+    color: #C2462A;
+    background-color: rgba(255, 244, 240, 0.85);
+    border-color: #C2462A;
+}
+
+.ibx-status--done {
+    color: #2F6FD0;
+    background-color: rgba(220, 235, 251, 0.85);
+    border-color: #2F6FD0;
+    rotate: 6deg;
+}
+
+.ibx-subject-box {
+    align-self: flex-start;
+    margin: 10px 0 8px 0;
+}
+
+.ibx-subject-mark {
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    bottom: 4px;
+    height: 13px;
+    background-color: #FFE066;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 4px;
+    border-bottom-left-radius: 7px;
+    rotate: -0.6deg;
+}
+
+.ibx-subject {
+    font-size: 34px;
+    white-space: normal;
+}
+
+/* Subjects with a capital G or a lowercase z fall back to the heavy font, which runs larger. */
+.ibx-subject.font-heavy { font-size: 25px; }
+
+.ibx-ruled { margin-top: 2px; }
+
+.ibx-body {
+    font-size: 23px;
+    white-space: normal;
+    margin: 0;
+    padding: 0;
+}
+
+.ibx-sign {
+    font-size: 23px;
+    -unity-text-align: upper-right;
+    margin: 0;
+    padding: 0;
+}
+
+.ibx-late-note {
+    font-size: 19px;
+    color: #C2462A;
+    white-space: normal;
+    margin-top: 6px;
+}
+
+.ibx-know {
+    margin: 14px 4px 6px 0;
+    padding: 6px 12px 10px 12px;
+    rotate: 0.5deg;
+    --ink-fill: #F4F9FF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-dots: #D6E6F7;
+    --ink-radius: "12 6 10 8 / 8 10 6 12";
+}
+
+.ibx-know-title { font-size: 22px; }
+
+.ibx-person {
+    flex-direction: row;
+    align-items: center;
+    padding: 4px 6px 4px 4px;
+    margin-top: 3px;
+    border-radius: 10px;
+}
+
+.ibx-person--link:hover { background-color: rgba(168, 209, 247, 0.35); }
+
+.ibx-person-face {
+    width: 32px;
+    height: 40px;
+    flex-shrink: 0;
+    margin-right: 10px;
+}
+
+.ibx-person-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: hidden;
+}
+
+.ibx-person-name {
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ibx-person-sub {
+    font-size: 12px;
+    color: #3F5F93;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.ibx-mini {
+    width: 54px;
+    flex-shrink: 0;
+    align-items: center;
+}
+
+.ibx-mini-label {
+    font-size: 15px;
+    color: #3F5F93;
+}
+
+.ibx-mini-value {
+    font-size: 21px;
+    margin-top: -4px;
+}
+
+.ibx-mini-value--low { color: #C2462A; }
+
+.ibx-person-go { margin-left: 4px; }
+
+.ibx-letter-empty {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    padding-right: 40px;
+}
+
+.ibx-empty-icon {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 8px;
+}
+
+.ibx-empty-title { font-size: 34px; }
+
+.ibx-letter-empty > .empty-note {
+    -unity-text-align: upper-center;
+    margin-top: 4px;
+}
+
+/* --- Replies ---------------------------------------------------------------------------------- */
+
+.ibx-reply {
+    flex-grow: 1;
+    flex-basis: 0;
+    padding: 12px 6px 12px 16px;
+    --ink-fill: #EAF3FD;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 4;
+    --ink-shadow-y: 5;
+    --ink-dots: #CFE0F4;
+    --ink-radius: "24 12 20 14 / 14 20 12 24";
+}
+
+.ibx-reply-head {
+    flex-shrink: 0;
+    padding-right: 10px;
+}
+
+.ibx-reply-title { font-size: 32px; }
+
+.ibx-reply-note {
+    flex-direction: row;
+    align-items: center;
+    margin-top: -2px;
+}
+
+.ibx-reply-note-text {
+    font-size: 18px;
+    color: #3F5F93;
+    margin-left: 5px;
+    white-space: normal;
+    flex-shrink: 1;
+}
+
+.ibx-reply-scroll { flex-grow: 1; }
+
+.ibx-reply-list { padding: 2px 10px 8px 2px; }
+
+.ibx-option {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 10px 12px 10px 10px;
+    margin-top: 14px;
+    transition-duration: 0.12s;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.ibx-option--b { --ink-radius: "8 16 10 14 / 14 10 16 8"; }
+
+.ibx-option:hover {
+    translate: 2px 0px;
+    --ink-fill: #F2F8FE;
+}
+
+.ibx-option--on {
+    --ink-fill: #DCEBFB;
+    --ink-border-width: 3;
+    --ink-shadow: #2F6FD0;
+    --ink-shadow-x: 4;
+    --ink-shadow-y: 4;
+}
+
+.ibx-option--on:hover { --ink-fill: #DCEBFB; }
+
+.ibx-option--off {
+    --ink-fill: #F3F6FA;
+    --ink-border: #7FA6D6;
+    --ink-shadow: #BCD5F0;
+}
+
+.ibx-option--off:hover {
+    translate: 0px 0px;
+    --ink-fill: #F3F6FA;
+}
+
+.ibx-radio {
+    width: 26px;
+    height: 26px;
+    flex-shrink: 0;
+    margin: 1px 10px 0 0;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.ibx-radio--on { --ink-fill: #2F6FD0; }
+
+.ibx-option--off .ibx-radio {
+    --ink-fill: #EEF5FD;
+    --ink-border: #7FA6D6;
+}
+
+.ibx-option-body {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.ibx-option-top {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.ibx-option-label {
+    font-size: 15px;
+    white-space: normal;
+    flex-shrink: 1;
+}
+
+.ibx-option--off .ibx-option-label { color: #4A6A9E; }
+
+.ibx-cost {
+    flex-shrink: 0;
+    margin: 1px 0 0 8px;
+    font-size: 12px;
+    padding: 0 7px 1px 7px;
+    background-color: #FFE066;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 5px;
+}
+
+.ibx-option-preview {
+    font-size: 13px;
+    color: #3F5F93;
+    white-space: normal;
+    margin-top: 3px;
+}
+
+.ibx-hint {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 5px;
+}
+
+.ibx-hint-text {
+    font-size: 18px;
+    color: #3F5F93;
+    white-space: normal;
+    flex-shrink: 1;
+    margin: -2px 0 0 5px;
+}
+
+.ibx-hint--open .ibx-hint-text { color: #1F5CB8; }
+
+.ibx-why {
+    flex-direction: row;
+    align-items: flex-start;
+    margin-top: 5px;
+}
+
+.ibx-why-text {
+    font-size: 12px;
+    color: #C2462A;
+    white-space: normal;
+    flex-shrink: 1;
+    margin-left: 5px;
+}
+
+.ibx-pick {
+    position: absolute;
+    right: 14px;
+    top: -13px;
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 9px 2px 6px;
+    rotate: 3deg;
+    --ink-fill: #FFE066;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "8 4 7 5 / 5 7 4 8";
+}
+
+.ibx-pick-text {
+    font-size: 17px;
+    margin-left: 3px;
+}
+
+.ibx-advice {
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 18px 6px 4px 4px;
+    padding: 12px 12px 10px 10px;
+    rotate: -0.8deg;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "4 7 5 6";
+}
+
+.ibx-advice-tape {
+    left: 42%;
+    top: -10px;
+    width: 58px;
+    height: 20px;
+    rotate: 4deg;
+}
+
+.ibx-advice-face {
+    width: 46px;
+    height: 46px;
+    flex-shrink: 0;
+    margin-right: 10px;
+    padding: 3px 3px 1px 3px;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.ibx-advice-portrait { flex-grow: 1; }
+
+.ibx-advice-body {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.ibx-advice-title { font-size: 22px; }
+.ibx-advice-title.font-heavy { font-size: 16px; }
+
+.ibx-advice-text {
+    font-size: 13px;
+    white-space: normal;
+}
+
+.ibx-admin {
+    flex-direction: row;
+    align-items: flex-start;
+    margin: 14px 6px 2px 2px;
+    padding: 8px 10px 8px 10px;
+    --ink-fill: #F7FAFE;
+    --ink-border: #9CC3EC;
+    --ink-border-width: 2;
+    --ink-dash: 6;
+    --ink-radius: "12 8 10 6 / 6 10 8 12";
+}
+
+.ibx-admin-text {
+    font-size: 12px;
+    color: #3F5F93;
+    white-space: normal;
+    flex-shrink: 1;
+    margin-left: 8px;
+}
+
+.ibx-outcome {
+    margin: 12px 6px 4px 2px;
+    padding: 14px 16px 14px 16px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.ibx-outcome-stamp {
+    align-self: flex-start;
+    font-size: 17px;
+    letter-spacing: 2px;
+    padding: 3px 10px 2px 12px;
+    margin-bottom: 4px;
+    rotate: -5deg;
+    color: #2F6FD0;
+    background-color: rgba(220, 235, 251, 0.8);
+    border-width: 3px;
+    border-color: #2F6FD0;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 7px;
+    border-bottom-left-radius: 4px;
+}
+
+.ibx-outcome-stamp--late {
+    color: #C2462A;
+    background-color: #FFF4F0;
+    border-color: #C2462A;
+}
+
+.ibx-outcome-label {
+    font-size: 19px;
+    color: #3F5F93;
+    margin-top: 6px;
+}
+
+.ibx-outcome-choice {
+    font-size: 16px;
+    white-space: normal;
+}
+
+.ibx-outcome-choice--late {
+    color: #C2462A;
+    margin-top: 6px;
+}
+
+.ibx-outcome-text {
+    font-size: 14px;
+    white-space: normal;
+}
+
+.ibx-agree {
+    flex-direction: row;
+    align-items: center;
+    margin: 14px 6px 0 4px;
+}
+
+.ibx-agree-face {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+    padding: 2px 2px 0 2px;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.ibx-agree-text {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+    flex-shrink: 1;
+    margin-left: 8px;
+}
+
+.ibx-calm {
+    align-items: center;
+    margin: 26px 10px 10px 0;
+}
+
+.ibx-calm-badge {
+    width: 70px;
+    height: 70px;
+    align-items: center;
+    justify-content: center;
+    rotate: -4deg;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.ibx-calm-icon {
+    width: 38px;
+    height: 38px;
+}
+
+.ibx-calm-title {
+    font-size: 26px;
+    margin-top: 10px;
+}
+
+.ibx-calm-text {
+    font-size: 20px;
+    color: #3F5F93;
+    white-space: normal;
+    -unity-text-align: upper-center;
+}
+
+.ibx-reply-foot {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+    margin: 8px 10px 2px 0;
+}
+
+.ibx-go {
+    flex-grow: 1;
+    margin-left: 10px;
+    justify-content: center;
+}

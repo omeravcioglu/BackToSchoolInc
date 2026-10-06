@@ -1,0 +1,730 @@
+/* Admissions: the beds strip, applicant cards with their offers, the campaign and the admissions calendar. */
+
+.adx-main {
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0;
+    margin-right: 16px;
+}
+
+.adx-head {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.adx-beds {
+    flex-direction: row;
+    align-items: center;
+    flex-shrink: 1;
+    padding: 6px 14px 6px 12px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "14 8 12 10 / 10 12 8 14";
+}
+
+.adx-bed-icons {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-shrink: 1;
+}
+
+.adx-bed {
+    width: 20px;
+    height: 20px;
+    margin-right: 2px;
+}
+
+.adx-seg {
+    width: 6px;
+    height: 18px;
+    margin-right: 2px;
+    border-radius: 2px;
+}
+
+.adx-seg--taken { background-color: #1E3A6D; }
+.adx-seg--free { background-color: #D6E6F7; }
+
+.adx-bed-words {
+    flex-shrink: 0;
+    margin-left: 10px;
+}
+
+.adx-bed-text { font-size: 13px; }
+.adx-bed-text--full { color: #C2462A; }
+
+.adx-bed-sub {
+    font-size: 16px;
+    color: #3F5F93;
+    margin-top: -3px;
+}
+
+.adx-count {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 14px;
+    font-size: 20px;
+    color: #3F5F93;
+    -unity-text-align: middle-right;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Applicant cards */
+
+.adx-list { flex-grow: 1; }
+
+.adx-list-content { padding: 16px 6px 6px 2px; }
+
+.adx-grid {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.adx-card {
+    width: 300px;
+    margin: 0 16px 24px 0;
+    padding: 12px 14px 14px 14px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.adx-card--a { rotate: -0.8deg; }
+.adx-card--b { rotate: 0.6deg; --ink-radius: "8 16 10 14 / 14 10 16 8"; }
+.adx-card--c { rotate: -0.3deg; }
+
+.adx-card--answered { --ink-fill: #F5F9FE; }
+
+.adx-card-tape {
+    left: 115px;
+    top: -11px;
+    width: 70px;
+    height: 22px;
+    rotate: 3deg;
+}
+
+.adx-card-top {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    min-height: 24px;
+}
+
+.adx-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-shrink: 1;
+}
+
+.adx-chip {
+    flex-direction: row;
+    align-items: center;
+    padding: 1px 8px 2px 7px;
+    margin: 0 5px 4px 0;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 11px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 7px;
+}
+
+.adx-chip--pale { background-color: #DCEBFB; }
+.adx-chip--gold { background-color: #FFE066; }
+.adx-chip--blush { background-color: #FFE3DA; }
+.adx-chip--sky { background-color: #A8D1F7; }
+
+.adx-chip-icon {
+    width: 13px;
+    height: 13px;
+    margin-right: 4px;
+}
+
+.adx-chip-text { font-size: 11px; }
+
+.adx-expiry {
+    flex-shrink: 0;
+    margin-left: 6px;
+    font-size: 17px;
+    color: #3F5F93;
+}
+
+.adx-expiry--soon { color: #C2462A; }
+
+.adx-who {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 2px;
+}
+
+/* The face is cropped to a circle; the ring on top keeps the ink outline over the shoulders. */
+.adx-face {
+    width: 76px;
+    height: 76px;
+    flex-shrink: 0;
+    margin-right: 12px;
+    align-items: center;
+    justify-content: flex-end;
+    overflow: hidden;
+    border-radius: 38px;
+    --ink-fill: #DCEBFB;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.adx-portrait {
+    width: 58px;
+    height: 72px;
+    flex-shrink: 0;
+    margin-bottom: -6px;
+}
+
+.adx-face-ring {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.adx-id {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.adx-name {
+    font-size: 25px;
+    white-space: normal;
+}
+
+.adx-grade {
+    font-size: 12px;
+    color: #3F5F93;
+    margin-top: -2px;
+}
+
+.adx-hearts {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 3px;
+}
+
+.adx-heart {
+    width: 15px;
+    height: 15px;
+    margin-right: 1px;
+}
+
+.adx-heart--off { --icon-ink: #7FA6D6; }
+
+.adx-keen {
+    font-size: 17px;
+    color: #3F5F93;
+    margin-left: 5px;
+}
+
+.adx-pitch {
+    font-size: 18px;
+    color: #1F5CB8;
+    white-space: normal;
+    margin: 4px 0 6px 0;
+}
+
+.adx-abilities { margin-bottom: 6px; }
+
+.adx-ability {
+    flex-direction: row;
+    align-items: center;
+    height: 17px;
+}
+
+.adx-ability-icon {
+    width: 15px;
+    height: 15px;
+    margin-right: 6px;
+}
+
+.adx-ability-name {
+    width: 84px;
+    font-size: 11px;
+    color: #3F5F93;
+}
+
+.bar.adx-ability-bar {
+    flex-grow: 1;
+    height: 9px;
+}
+
+.bar-fill.adx-fill--star { background-color: #FFE066; }
+
+.adx-ability-value {
+    width: 26px;
+    font-size: 12px;
+    -unity-text-align: middle-right;
+}
+
+.adx-traits {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.adx-aid {
+    flex-direction: row;
+    align-items: center;
+    margin: 2px 0 6px 0;
+}
+
+.adx-aid-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.adx-aid-text {
+    font-size: 13px;
+    margin-left: 6px;
+}
+
+.adx-aid-chip {
+    font-size: 13px;
+    margin-left: 5px;
+    padding: 0 7px 1px 7px;
+    background-color: #FFF3C4;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 5px;
+}
+
+/* Buttons */
+
+.adx-button-row {
+    flex-direction: row;
+    margin-top: 6px;
+}
+
+.adx-btn {
+    height: 36px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0 12px 0 12px;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "12 20 10 18 / 18 10 20 12";
+}
+
+.adx-btn:hover { --ink-fill: #EAF3FD; }
+.adx-btn:active { translate: 0px 1px; }
+
+.adx-btn--primary {
+    height: 40px;
+    --ink-fill: #2F6FD0;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "22 12 20 10 / 10 20 12 22";
+}
+
+.adx-btn--primary:hover { --ink-fill: #3B7CDB; }
+.adx-btn--primary > .adx-btn-label { color: #FFFFFF; }
+
+.adx-btn--on { --ink-fill: #DCEBFB; }
+
+/* Greyed out: still clickable, so the toast can say why not. */
+.adx-btn--off { --ink-fill: #EEF5FD; --ink-border: #9CC3EC; }
+.adx-btn--off:hover { --ink-fill: #EEF5FD; }
+.adx-btn--off > .adx-btn-label { color: #7FA6D6; }
+.adx-btn--primary.adx-btn--off { --ink-fill: #9CC3EC; --ink-border: #7FA6D6; --ink-shadow: #7FA6D6; }
+.adx-btn--primary.adx-btn--off:hover { --ink-fill: #9CC3EC; }
+.adx-btn--primary.adx-btn--off > .adx-btn-label { color: #FFFFFF; }
+
+.adx-btn-label { font-size: 13px; }
+
+.adx-btn-pill {
+    font-size: 11px;
+    margin-left: 6px;
+    padding: 0 5px 1px 5px;
+    color: #1E3A6D;
+    background-color: #FFE066;
+    border-width: 1.5px;
+    border-color: #1E3A6D;
+    border-radius: 7px;
+}
+
+.adx-gap { margin-left: 8px; }
+
+/* Custom offer */
+
+.adx-custom {
+    margin-top: 8px;
+    padding: 6px 10px 10px 10px;
+    --ink-fill: #F5F9FE;
+    --ink-border: #9CC3EC;
+    --ink-border-width: 2;
+    --ink-dash: 6;
+    --ink-radius: "12 8 10 6 / 6 10 8 12";
+}
+
+.adx-custom-title {
+    font-size: 18px;
+    color: #3F5F93;
+}
+
+.adx-types {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 2px;
+}
+
+.adx-type {
+    font-size: 11px;
+    padding: 1px 7px 2px 7px;
+    margin: 0 4px 4px 0;
+    background-color: #FBFDFF;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 6px;
+}
+
+.adx-type:hover { background-color: #EAF3FD; }
+.adx-type--on { color: #FFFFFF; background-color: #2F6FD0; }
+.adx-type--on:hover { background-color: #3B7CDB; }
+
+.adx-discount {
+    flex-direction: row;
+    align-items: center;
+    margin: 4px 0 2px 0;
+}
+
+.adx-step {
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    --ink-fill: #EAF3FD;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.adx-step:hover { --ink-fill: #D3E6FA; }
+.adx-step:active { translate: 0px 1px; }
+
+.adx-discount-value {
+    width: 76px;
+    font-size: 22px;
+    -unity-text-align: middle-center;
+}
+
+.adx-discount-cost {
+    flex-shrink: 1;
+    margin-left: 8px;
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.adx-custom-hint {
+    font-size: 17px;
+    color: #1F5CB8;
+    white-space: normal;
+}
+
+.adx-why {
+    font-size: 12px;
+    color: #C2462A;
+    white-space: normal;
+    margin: 2px 0 2px 0;
+}
+
+.adx-make { margin-top: 6px; }
+
+/* The stamp on an answered card */
+
+.adx-stamp {
+    position: absolute;
+    left: 50px;
+    top: 120px;
+    padding: 6px 16px 4px 16px;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: #3F5F93;
+    background-color: rgba(251, 253, 255, 0.9);
+    border-width: 3.5px;
+    border-color: #3F5F93;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 5px;
+    rotate: -12deg;
+}
+
+.adx-stamp--welcome {
+    color: #1F5CB8;
+    border-color: #1F5CB8;
+    background-color: rgba(234, 243, 253, 0.92);
+}
+
+.adx-stamp-note {
+    font-size: 18px;
+    color: #3F5F93;
+    white-space: normal;
+    margin-top: 8px;
+}
+
+/* Side: campaign and season */
+
+.adx-side {
+    width: 292px;
+    flex-shrink: 0;
+}
+
+.adx-side-content { padding: 16px 8px 8px 2px; }
+
+.adx-campaign {
+    align-items: center;
+    padding: 12px 16px 16px 16px;
+    margin-bottom: 26px;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "18 10 16 12 / 12 16 10 18";
+}
+
+.adx-megaphone {
+    width: 92px;
+    height: 74px;
+}
+
+.adx-side-title {
+    font-size: 26px;
+    margin-top: 2px;
+}
+
+.adx-campaign-cost { font-size: 13px; }
+
+.adx-campaign-note {
+    font-size: 18px;
+    color: #3F5F93;
+    white-space: normal;
+    -unity-text-align: upper-center;
+    margin-top: 2px;
+}
+
+.adx-campaign-run {
+    align-self: stretch;
+    margin-top: 8px;
+}
+
+.adx-campaign-line {
+    font-size: 12px;
+    color: #1F5CB8;
+    -unity-text-align: upper-center;
+    margin-bottom: 4px;
+}
+
+.adx-boost {
+    font-size: 18px;
+    color: #1F5CB8;
+    margin-top: 4px;
+}
+
+.adx-run {
+    align-self: stretch;
+    margin-top: 10px;
+}
+
+.adx-season {
+    padding: 14px 16px 14px 16px;
+    margin: 0 4px 8px 0;
+    rotate: 1deg;
+    --ink-fill: #FFF3C4;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "4 7 5 6";
+}
+
+.adx-season-tape {
+    left: 96px;
+    top: -12px;
+    width: 80px;
+    height: 24px;
+    rotate: -2deg;
+}
+
+.adx-season-when {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+    margin-bottom: 6px;
+}
+
+.adx-months {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.adx-month {
+    width: 15%;
+    height: 24px;
+    margin-bottom: 4px;
+    align-items: center;
+    justify-content: center;
+    background-color: #FBFDFF;
+    border-width: 1.5px;
+    border-color: #1E3A6D;
+    border-radius: 5px;
+}
+
+.adx-month-label { font-size: 10px; }
+
+.adx-month--transfers { background-color: #DCEBFB; }
+.adx-month--season { background-color: #FFE066; border-width: 2px; }
+.adx-month--now { background-color: #2F6FD0; }
+.adx-month--now > .adx-month-label { color: #FFFFFF; }
+
+.adx-key {
+    flex-direction: row;
+    align-items: center;
+    margin: 2px 0 6px 0;
+}
+
+.adx-key-dot {
+    width: 12px;
+    height: 12px;
+    margin-right: 4px;
+    border-width: 1.5px;
+    border-color: #1E3A6D;
+    border-radius: 3px;
+}
+
+.adx-key-text {
+    font-size: 11px;
+    color: #3F5F93;
+    margin-right: 12px;
+}
+
+.adx-season-line {
+    font-size: 12px;
+    white-space: normal;
+    margin-top: 3px;
+}
+
+.adx-price--high { color: #C2462A; }
+
+.adx-season-note {
+    font-size: 18px;
+    color: #1F5CB8;
+    white-space: normal;
+    margin-top: 6px;
+}
+
+/* --- No applicants: when families come, and this year's new arrivals --------------------------- */
+
+.adx-empty {
+    margin: 6px 8px 0 4px;
+    padding: 18px 22px 18px 20px;
+    --ink-fill: #FBFDFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.adx-empty-top {
+    flex-direction: row;
+    align-items: center;
+}
+
+.adx-empty-art {
+    width: 96px;
+    height: 96px;
+    flex-shrink: 0;
+    margin-right: 18px;
+}
+
+.adx-empty-words {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.adx-empty-title { font-size: 34px; }
+
+.adx-empty-note {
+    font-size: 21px;
+    color: #3F5F93;
+    white-space: normal;
+}
+
+.adx-empty-line {
+    height: 2px;
+    margin: 16px 0 12px 0;
+    --dash-color: #9CC3EC;
+}
+
+.adx-arrivals-title { font-size: 14px; }
+
+.adx-arrivals {
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.adx-arrival {
+    width: 78px;
+    margin: 0 10px 10px 0;
+    padding: 6px 2px 5px 2px;
+    align-items: center;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 1.5;
+    --ink-radius: "10 6 9 7 / 7 9 6 10";
+}
+
+.adx-arrival:hover { --ink-fill: #EAF3FD; }
+
+.adx-arrival-pic {
+    width: 44px;
+    height: 54px;
+}
+
+.adx-arrival-name {
+    font-size: 12px;
+    max-width: 72px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.adx-arrival-when {
+    font-size: 15px;
+    color: #3F5F93;
+}
+
+/* Names with a capital G or a z fall back to Playpen, which runs much wider. */
+.adx-name.font-heavy { font-size: 18px; }

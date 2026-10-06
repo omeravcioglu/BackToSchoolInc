@@ -1,0 +1,239 @@
+/* School rules: the cafeteria menu as plates, then curfew, discipline, internet and ticket
+   prices as picture cards. The rule in force is blue with a check. */
+
+.rul-scroll { flex-grow: 1; }
+
+/* Top and right padding keep the current card's check badge and the ink shadows clear of the scroll view's edge. */
+.rul-row {
+    flex-direction: row;
+    align-items: stretch;
+    flex-shrink: 0;
+    padding-top: 9px;
+    margin-bottom: 6px;
+}
+
+.rul-side {
+    width: 190px;
+    flex-shrink: 0;
+    justify-content: center;
+    padding-right: 6px;
+}
+
+.rul-title { font-size: 28px; }
+
+.rul-head-icon {
+    width: 28px;
+    height: 28px;
+    margin-right: 8px;
+}
+
+.rul-hint {
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+    margin-top: 2px;
+}
+
+.rul-now { margin-top: 6px; }
+
+.rul-options {
+    flex-grow: 1;
+    flex-direction: row;
+    padding-right: 9px;
+}
+
+.rul-card {
+    flex-grow: 1;
+    flex-basis: 0;
+    margin-left: 14px;
+    transition-duration: 0.12s;
+    --ink-fill: #FFFFFF;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-shadow: #1E3A6D;
+    --ink-shadow-x: 2;
+    --ink-shadow-y: 3;
+    --ink-radius: "16 8 14 10 / 10 14 8 16";
+}
+
+.rul-card--pick:hover {
+    translate: 0px -2px;
+    --ink-fill: #F2F8FE;
+}
+
+.rul-card--on {
+    --ink-fill: #DCEBFB;
+    --ink-border-width: 3;
+    --ink-shadow: #2F6FD0;
+    --ink-shadow-x: 3;
+    --ink-shadow-y: 4;
+}
+
+.rul-card--past { opacity: 0.6; }
+
+.rul-check {
+    position: absolute;
+    right: -8px;
+    top: -8px;
+    width: 26px;
+    height: 26px;
+    align-items: center;
+    justify-content: center;
+    display: none;
+    --ink-fill: #2F6FD0;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.rul-card--on > .rul-check { display: flex; }
+
+.rul-name { font-size: 15px; }
+
+/* Plates */
+
+.rul-plate {
+    min-height: 150px;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 10px 8px 10px;
+}
+
+.rul-plate-art {
+    width: 104px;
+    height: 60px;
+    margin-bottom: 2px;
+}
+
+.rul-plate-line {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 3px;
+}
+
+.rul-q {
+    flex-direction: row;
+    align-items: center;
+    margin-right: 6px;
+    padding: 0 7px 1px 5px;
+    background-color: #FBFDFF;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 5px;
+}
+
+.rul-q-text {
+    font-size: 12px;
+    margin-left: 3px;
+}
+
+.rul-cost {
+    font-size: 12px;
+    color: #3F5F93;
+}
+
+.rul-mood {
+    font-size: 17px;
+    color: #3F5F93;
+}
+
+.rul-mood--up { color: #1F5CB8; }
+.rul-mood--down { color: #C2462A; }
+
+/* Picture cards */
+
+.rul-option {
+    min-height: 100px;
+    flex-direction: row;
+    align-items: center;
+    padding: 10px 14px 10px 14px;
+}
+
+.rul-badge {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    margin-right: 14px;
+    --ink-fill: #EAF3FD;
+    --ink-border: #1E3A6D;
+    --ink-border-width: 2.5;
+    --ink-radius: "50% 44% 52% 46% / 46% 52% 44% 50%";
+}
+
+.rul-badge-art {
+    width: 32px;
+    height: 32px;
+}
+
+.rul-option-text {
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.rul-option-text > .rul-name {
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.rul-chips {
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.rul-chip {
+    font-size: 12px;
+    margin: 0 5px 5px 0;
+    padding: 0 7px 1px 7px;
+    color: #3F5F93;
+    background-color: #FBFDFF;
+    border-width: 2px;
+    border-color: #1E3A6D;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 9px;
+    border-bottom-left-radius: 5px;
+}
+
+.rul-chip--up {
+    color: #1F5CB8;
+    background-color: #DCEBFB;
+}
+
+.rul-chip--down {
+    color: #C2462A;
+    background-color: #FFE3DA;
+}
+
+/* Home game tickets */
+
+.rul-ticket-card {
+    flex-direction: row;
+    align-items: center;
+    min-height: 80px;
+    padding: 10px 18px 10px 18px;
+}
+
+.rul-price {
+    font-size: 36px;
+    width: 84px;
+    -unity-text-align: middle-center;
+}
+
+.mon-track.rul-ticket-track {
+    width: 220px;
+    flex-shrink: 0;
+    margin: 0 20px 0 20px;
+}
+
+.rul-ticket-note {
+    flex-grow: 1;
+    flex-shrink: 1;
+    font-size: 19px;
+    color: #3F5F93;
+    white-space: normal;
+}
