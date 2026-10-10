@@ -76,33 +76,6 @@ def logo(height):
     return img.rotate(3, resample=Image.BICUBIC, expand=True)
 
 
-def tagline(width):
-    """The 'a boarding school sim' note: white paper, ink outline, a solid shadow."""
-    f = font('Caveat-Bold.ttf', int(width * 0.11))
-    text = 'a boarding school sim'
-    box = ImageDraw.Draw(Image.new('RGBA', (1, 1))).textbbox((0, 0), text, font=f)
-    tw, th = box[2] - box[0], box[3] - box[1]
-    pad, border, off = int(th * 0.45), max(2, int(th * 0.09)), max(3, int(th * 0.14))
-    img = Image.new('RGBA', (tw + pad * 2 + off + border, th + pad * 2 + off + border), (0, 0, 0, 0))
-    d = ImageDraw.Draw(img)
-    r = int(th * 0.4)
-    d.rounded_rectangle((off, off, tw + pad * 2 + off, th + pad * 2 + off), r, fill=INK)
-    d.rounded_rectangle((0, 0, tw + pad * 2, th + pad * 2), r, fill=PAPER, outline=INK, width=border)
-    d.text((pad - box[0], pad - box[1]), text, font=f, fill=INK)
-    return img.rotate(-3, resample=Image.BICUBIC, expand=True)
-
-
-def logo_block(logo_height):
-    """The logo with the tagline note under it, on one transparent canvas."""
-    mark = logo(logo_height)
-    note = tagline(int(mark.width * 0.7))
-    nx, gap = int(mark.width * 0.25), int(logo_height * 0.05)
-    img = Image.new('RGBA', (max(mark.width, nx + note.width), mark.height + gap + note.height), (0, 0, 0, 0))
-    img.alpha_composite(mark, (0, 0))
-    img.alpha_composite(note, (nx, mark.height + gap))
-    return img
-
-
 def grid_look(backdrop, s):
     """The title backdrop's graph paper, read from the capture: paper, line and crossing colours,
     the square size, and the half-width of the lines, which are centred on multiples of the square."""
@@ -149,33 +122,64 @@ def tall(backdrop, look, size, block):
     return img
 
 
+def wide(backdrop, look, size, art_x0, logo_frac, art_h=1.0):
+    """A wide capsule: the school (from `art_x0` of the title art's width) on the right, `art_h` of the
+    height tall, more of the same graph paper on the left and above, and the logo in that clear paper,
+    at most `logo_frac` of the height tall. The art's left edge fades into the paper. It is built at the
+    art's resolution and scaled down as one picture, so paper and art match. Only art and the game's
+    name: Valve rejects capsules with any other text or logos."""
+    w, h = backdrop.size
+    y0, y1 = int(0.03 * h), int(0.90 * h)   # sky above the flag down to the children on the path
+    art = backdrop.crop((int(art_x0 * w), y0, w, y1))
+    scale = size[1] * art_h / art.height
+    cw, ch = round(size[0] / scale), round(size[1] / scale)   # the canvas at the art's resolution
+    pad, top = max(0, cw - art.width), ch - art.height
+    src = continue_grid(look, cw, ch, int(art_x0 * w) - pad, y0 - top)
+    fade = int(art.width * 0.12)
+    mask = Image.new('L', art.size, 255)
+    for x in range(fade):
+        mask.paste(round(255 * (x / fade) ** 1.5), (x, 0, x + 1, art.height))
+    src.paste(art, (pad, top), mask)
+    img = src.resize(size, Image.LANCZOS)
+    margin = round(size[1] * 0.07)
+    room = round((pad + fade * 0.4) * scale) - margin   # clear paper left of the art
+    mark = logo(round(size[1] * logo_frac))
+    if mark.width > room:
+        mark = mark.resize((room, round(mark.height * room / mark.width)), Image.LANCZOS)
+    img.alpha_composite(mark, (margin, (size[1] - mark.height) // 2))
+    return img
+
+
+def small(backdrop, look, size):
+    """The small capsule: the logo nearly filling it, on the title's graph paper at the usual square size."""
+    k = 6   # build at 6x, like the other capsules' scale-down, so the grid squares match
+    paper = continue_grid(look, size[0] * k, size[1] * k, 0, 0).resize(size, Image.LANCZOS)
+    mark = logo(round(size[1] * 0.9))
+    if mark.width > size[0] * 0.94:
+        mark = mark.resize((round(size[0] * 0.94), round(mark.height * size[0] * 0.94 / mark.width)), Image.LANCZOS)
+    paper.alpha_composite(mark, ((size[0] - mark.width) // 2, (size[1] - mark.height) // 2))
+    return paper
+
+
 def main(captures, out):
     os.makedirs(out, exist_ok=True)
-    keyart = Image.open(os.path.join(captures, 'keyart.png')).convert('RGBA')
     backdrop = Image.open(os.path.join(captures, 'backdrop.png')).convert('RGBA')
-    s = keyart.width / REF_W
+    s = backdrop.width / REF_W
 
     def save(img, name):
         img.convert('RGB').save(os.path.join(out, name), optimize=True)
         print(name, img.size)
 
-    # Wide formats: the title art as it is (logo top left, school on the right).
-    save(fit(keyart, (1232, 706)), 'main_capsule_1232x706.png')
-    save(crop_ratio(keyart, 920 / 430, cy=0.0).resize((920, 430), Image.LANCZOS), 'header_capsule_920x430.png')
-    save(crop_ratio(keyart, 920 / 430, cy=0.0).resize((920, 430), Image.LANCZOS), 'library_header_920x430.png')
-    # Small capsule: just the logo corner (logo, acorn, tagline and a cloud), so the name stays
-    # readable. It stops short of the paper plane and the school's roof, and more graph paper on
-    # the left keeps the logo off the edge.
     look = grid_look(backdrop, s)
-    pad = round(100 * s)
-    corner = Image.new('RGBA', (round(960 * s), round(362 * s)))
-    corner.paste(continue_grid(look, pad, corner.height, -pad, 0), (0, 0))
-    corner.paste(keyart.crop((0, 0, corner.width - pad, corner.height)), (pad, 0))
-    save(fit(corner, (462, 174)), 'small_capsule_462x174.png')
+    # Wide formats: school on the right, big logo on the left.
+    save(wide(backdrop, look, (1232, 706), 0.465, 0.62, art_h=0.82), 'main_capsule_1232x706.png')
+    save(wide(backdrop, look, (920, 430), 0.465, 0.74), 'header_capsule_920x430.png')
+    save(wide(backdrop, look, (920, 430), 0.465, 0.74), 'library_header_920x430.png')
+    save(small(backdrop, look, (462, 174)), 'small_capsule_462x174.png')
 
     # Tall formats: the school with the logo in the sky above it.
-    save(tall(backdrop, look, (600, 900), logo_block(200)), 'library_capsule_600x900.png')
-    save(tall(backdrop, look, (748, 896), logo_block(210)), 'vertical_capsule_748x896.png')
+    save(tall(backdrop, look, (600, 900), logo(230)), 'library_capsule_600x900.png')
+    save(tall(backdrop, look, (748, 896), logo(250)), 'vertical_capsule_748x896.png')
 
     # Library hero: art only (Steam puts the logo on top), sky and school.
     hero = crop_ratio(backdrop, 3840 / 1240, cy=0.4)
